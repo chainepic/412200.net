@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 
+import { Reveal } from "../../ui/reveal";
 import { Section } from "../../ui/section";
 
 interface IndustryProps {
@@ -23,27 +24,26 @@ export default function Industries({
 }: IndustriesProps) {
   return (
     <Section className={className}>
-      <div className="max-w-container mx-auto flex flex-col items-center gap-10 sm:gap-16">
-        <div className="flex max-w-[720px] flex-col items-center gap-4 text-center">
-          <h2 className="text-3xl leading-tight font-semibold sm:text-5xl sm:leading-tight">
+      <div className="max-w-container mx-auto flex flex-col gap-12 sm:gap-16">
+        <Reveal className="max-w-[640px]">
+          <h2 className="text-3xl leading-tight font-semibold tracking-tight sm:text-4xl">
             {title}
           </h2>
-          <p className="text-muted-foreground text-md max-w-[600px] font-medium sm:text-xl">
+          <p className="text-muted-foreground mt-4 text-base leading-relaxed sm:text-lg">
             {description}
           </p>
-        </div>
-        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {industries.map((industry) => (
-            <div
-              key={industry.name}
-              className="bg-muted/15 hover:bg-muted/25 flex flex-col gap-4 rounded-2xl p-6 transition-colors"
-            >
+        </Reveal>
+        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {industries.map((industry, index) => (
+            <Reveal key={industry.name} delay={0.06 * index}>
+              <div className="bg-muted/15 hover:bg-muted/25 flex h-full flex-col gap-4 rounded-3xl p-6 transition-colors">
               <div className="text-brand">{industry.icon}</div>
               <h3 className="font-semibold">{industry.name}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {industry.description}
               </p>
-            </div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

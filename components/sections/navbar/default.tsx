@@ -65,9 +65,9 @@ export default function Navbar({
   className,
 }: NavbarProps) {
   return (
-    <header className={cn("sticky top-0 z-50 -mb-4 px-4 pb-4", className)}>
-      <div className="fade-bottom bg-background/15 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
+    <header className={cn("sticky top-0 z-50 px-4 py-3", className)}>
       <div className="max-w-container relative mx-auto">
+        <div className="bg-background/70 supports-[backdrop-filter]:bg-background/55 rounded-2xl border border-white/5 px-4 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-xl">
         <NavbarComponent>
           <NavbarLeft>
             <a
@@ -137,6 +137,7 @@ export default function Navbar({
             </Sheet>
           </NavbarRight>
         </NavbarComponent>
+        </div>
       </div>
     </header>
   );

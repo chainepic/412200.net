@@ -2,7 +2,8 @@ import "@/app/globals.css";
 
 import { ThemeProvider } from "next-themes";
 
-import { inter } from "@/lib/fonts";
+import { geistSans } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 import { jsonLd } from "@/lib/seo";
 
 export { metadata } from "@/lib/seo";
@@ -15,7 +16,7 @@ export default function RootLayout({
   return (
     <html
       lang="zh-CN"
-      className="dark"
+      className={cn(geistSans.variable, "dark")}
       style={{ colorScheme: "dark" }}
       suppressHydrationWarning
     >
@@ -25,7 +26,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} bg-background font-sans antialiased`}>
+      <body className={cn(geistSans.className, "bg-background antialiased")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

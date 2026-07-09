@@ -11,7 +11,7 @@ import CTA from "@/components/sections/cta/default";
 import LocalSeoKeywords from "@/components/seo/local-keywords";
 import Zhenhao from "@/components/logos/zhenhao";
 import CompanyNav from "@/components/navigation/company-nav";
-import { LayoutLines } from "@/components/ui/layout-lines";
+import { AmbientBackground } from "@/components/ui/ambient-background";
 import { pricingCategories } from "@/config/pricing";
 import { siteConfig } from "@/config/site";
 
@@ -31,7 +31,7 @@ export default function PricingPage() {
   return (
     <main className="bg-background text-foreground min-h-screen w-full">
       <LocalSeoKeywords />
-      <LayoutLines />
+      <AmbientBackground />
       <Navbar
         logo={<Zhenhao />}
         name={siteConfig.name}

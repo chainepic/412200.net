@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 
+import { Reveal } from "../../ui/reveal";
 import { Section } from "../../ui/section";
 
 interface CoreServiceProps {
@@ -7,6 +8,7 @@ interface CoreServiceProps {
   description: string;
   icon: ReactNode;
   highlights: string[];
+  featured?: boolean;
 }
 
 interface CoreServicesProps {
@@ -22,46 +24,80 @@ export default function CoreServices({
   services = [],
   className,
 }: CoreServicesProps) {
+  const [first, ...rest] = services;
+
   return (
     <Section className={className}>
-      <div className="max-w-container mx-auto flex flex-col items-center gap-10 sm:gap-16">
-        <div className="flex max-w-[720px] flex-col items-center gap-4 text-center">
-          <h2 className="text-3xl leading-tight font-semibold sm:text-5xl sm:leading-tight">
+      <div className="max-w-container mx-auto flex flex-col gap-12 sm:gap-16">
+        <Reveal className="max-w-[640px]">
+          <h2 className="text-3xl leading-tight font-semibold tracking-tight sm:text-4xl">
             {title}
           </h2>
-          <p className="text-muted-foreground text-md max-w-[600px] font-medium sm:text-xl">
+          <p className="text-muted-foreground mt-4 text-base leading-relaxed sm:text-lg">
             {description}
           </p>
-        </div>
-        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="bg-muted/15 hover:bg-muted/25 flex flex-col gap-5 rounded-2xl p-8 transition-colors"
-            >
-              <div className="bg-brand/10 text-brand flex size-12 items-center justify-center rounded-xl">
-                {service.icon}
+        </Reveal>
+
+        {first && (
+          <div className="grid gap-4 lg:grid-cols-12 lg:gap-5">
+            <Reveal className="lg:col-span-7">
+              <div className="bg-muted/20 flex h-full flex-col gap-6 rounded-3xl p-8 sm:p-10">
+                <div className="bg-brand/10 text-brand flex size-12 items-center justify-center rounded-2xl">
+                  {first.icon}
+                </div>
+                <div className="flex flex-col gap-3">
+                  <h3 className="text-2xl font-semibold tracking-tight">
+                    {first.title}
+                  </h3>
+                  <p className="text-muted-foreground max-w-[52ch] leading-relaxed">
+                    {first.description}
+                  </p>
+                </div>
+                <ul className="mt-auto flex flex-col gap-2">
+                  {first.highlights.map((item) => (
+                    <li
+                      key={item}
+                      className="text-muted-foreground flex items-center gap-2 text-sm"
+                    >
+                      <span className="bg-brand size-1.5 shrink-0 rounded-full" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="text-xl font-semibold">{service.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-              <ul className="flex flex-col gap-2">
-                {service.highlights.map((item) => (
-                  <li
-                    key={item}
-                    className="text-muted-foreground flex items-center gap-2 text-sm"
-                  >
-                    <span className="bg-brand size-1.5 shrink-0 rounded-full" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            </Reveal>
+
+            <div className="grid gap-4 lg:col-span-5">
+              {rest.map((service, index) => (
+                <Reveal key={service.title} delay={0.08 * (index + 1)}>
+                  <div className="bg-muted/15 hover:bg-muted/25 flex h-full flex-col gap-4 rounded-3xl p-6 transition-colors sm:p-7">
+                    <div className="bg-brand/10 text-brand flex size-10 items-center justify-center rounded-xl">
+                      {service.icon}
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <h3 className="text-lg font-semibold tracking-tight">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                    <ul className="flex flex-col gap-1.5">
+                      {service.highlights.slice(0, 2).map((item) => (
+                        <li
+                          key={item}
+                          className="text-muted-foreground text-xs"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </div>
     </Section>
   );

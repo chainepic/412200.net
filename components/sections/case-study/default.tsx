@@ -1,3 +1,4 @@
+import { Reveal } from "../../ui/reveal";
 import { Section } from "../../ui/section";
 
 interface CaseMetric {
@@ -29,10 +30,13 @@ export default function CaseStudy({
   return (
     <Section className={className}>
       <div className="max-w-container mx-auto flex flex-col gap-10 sm:gap-16">
-        <h2 className="text-center text-3xl font-semibold sm:text-5xl">
-          {title}
-        </h2>
-        <div className="bg-muted/15 grid grid-cols-1 gap-10 rounded-2xl p-8 lg:grid-cols-2 lg:gap-16 lg:p-12">
+        <Reveal>
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            {title}
+          </h2>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <div className="bg-muted/15 grid grid-cols-1 gap-10 rounded-3xl p-8 lg:grid-cols-2 lg:gap-16 lg:p-12">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-3">
               <span className="bg-brand/10 text-brand rounded-full px-3 py-1 text-xs font-medium">
@@ -75,7 +79,8 @@ export default function CaseStudy({
               </div>
             ))}
           </div>
-        </div>
+          </div>
+        </Reveal>
       </div>
     </Section>
   );

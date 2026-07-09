@@ -71,8 +71,8 @@ export function PricingCard({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4 rounded-2xl p-6 sm:p-8",
-        highlight ? "bg-brand/5 ring-brand/20 ring-1" : "bg-muted/20",
+        "flex flex-col gap-4 rounded-3xl p-6 sm:p-8",
+        highlight ? "bg-brand/8 ring-brand/15 ring-1" : "bg-muted/20",
       )}
     >
       <div className="flex flex-col gap-2">
