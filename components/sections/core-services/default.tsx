@@ -37,7 +37,7 @@ export default function CoreServices({
           {services.map((service) => (
             <div
               key={service.title}
-              className="border-border/60 bg-card/40 hover:border-brand/40 flex flex-col gap-5 rounded-2xl border p-8 transition-colors"
+              className="bg-muted/15 hover:bg-muted/25 flex flex-col gap-5 rounded-2xl p-8 transition-colors"
             >
               <div className="bg-brand/10 text-brand flex size-12 items-center justify-center rounded-xl">
                 {service.icon}

@@ -30,7 +30,7 @@ export default function Contact({
           </p>
         </div>
         <div className="grid w-full max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="border-border/60 bg-card/40 flex flex-col items-center gap-4 rounded-xl border p-6 text-center sm:col-span-3">
+          <div className="bg-muted/15 flex flex-col items-center gap-4 rounded-2xl p-6 text-center sm:col-span-3">
             <div className="text-brand text-sm font-medium">微信咨询</div>
             <Image
               src={siteConfig.contact.wechatQrcode}
@@ -49,7 +49,7 @@ export default function Contact({
               扫码或搜索关注我们，备注「AI咨询」，我们将在 24 小时内回复
             </p>
           </div>
-          <div className="border-border/60 bg-card/40 flex flex-col items-center gap-3 rounded-xl border p-6 text-center">
+          <div className="bg-muted/15 flex flex-col items-center gap-3 rounded-2xl p-6 text-center">
             <MailIcon className="text-brand size-5" />
             <div className="text-sm font-medium">邮箱</div>
             <a
@@ -59,14 +59,14 @@ export default function Contact({
               {siteConfig.contact.email}
             </a>
           </div>
-          <div className="border-border/60 bg-card/40 flex flex-col items-center gap-3 rounded-xl border p-6 text-center">
+          <div className="bg-muted/15 flex flex-col items-center gap-3 rounded-2xl p-6 text-center">
             <MapPinIcon className="text-brand size-5" />
             <div className="text-sm font-medium">地址</div>
             <p className="text-muted-foreground text-sm">
               {siteConfig.contact.location}
             </p>
           </div>
-          <div className="border-border/60 bg-card/40 flex flex-col items-center gap-3 rounded-xl border p-6 text-center">
+          <div className="bg-muted/15 flex flex-col items-center gap-3 rounded-2xl p-6 text-center">
             <div className="text-brand text-lg font-bold">
               {siteConfig.stats.years}年
             </div>

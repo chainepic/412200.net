@@ -32,11 +32,11 @@ export default function Industries({
             {description}
           </p>
         </div>
-        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {industries.map((industry) => (
             <div
               key={industry.name}
-              className="border-border/60 bg-card/40 hover:border-brand/40 flex flex-col gap-4 rounded-xl border p-6 transition-colors"
+              className="bg-muted/15 hover:bg-muted/25 flex flex-col gap-4 rounded-2xl p-6 transition-colors"
             >
               <div className="text-brand">{industry.icon}</div>
               <h3 className="font-semibold">{industry.name}</h3>

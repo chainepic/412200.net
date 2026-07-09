@@ -32,7 +32,7 @@ export default function CaseStudy({
         <h2 className="text-center text-3xl font-semibold sm:text-5xl">
           {title}
         </h2>
-        <div className="border-border/60 bg-card/40 grid grid-cols-1 gap-8 rounded-2xl border p-8 lg:grid-cols-2 lg:p-12">
+        <div className="bg-muted/15 grid grid-cols-1 gap-10 rounded-2xl p-8 lg:grid-cols-2 lg:gap-16 lg:p-12">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-3">
               <span className="bg-brand/10 text-brand rounded-full px-3 py-1 text-xs font-medium">
@@ -55,16 +55,16 @@ export default function CaseStudy({
               </div>
             </div>
             {quote && (
-              <blockquote className="border-brand/30 text-muted-foreground border-l-2 pl-4 text-sm italic">
+              <blockquote className="text-muted-foreground border-brand/30 border-l-2 pl-4 text-sm italic">
                 {quote}
               </blockquote>
             )}
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-6">
             {metrics.map((metric) => (
               <div
                 key={metric.label}
-                className="border-border/40 bg-background/50 flex flex-col items-center justify-center gap-1 rounded-xl border p-6 text-center"
+                className="flex flex-col items-center justify-center gap-1 p-4 text-center"
               >
                 <div className="from-foreground to-brand bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent sm:text-4xl">
                   {metric.value}

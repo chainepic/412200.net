@@ -5,10 +5,11 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { title: "解决方案", href: "#services" },
-  { title: "成功案例", href: "#cases" },
-  { title: "关于我们", href: "#about" },
-  { title: "联系我们", href: "#contact" },
+  { title: "解决方案", href: "/#services" },
+  { title: "服务价格", href: "/pricing" },
+  { title: "成功案例", href: "/#cases" },
+  { title: "关于我们", href: "/#about" },
+  { title: "联系我们", href: "/#contact" },
 ];
 
 export default function CompanyNav({ className }: { className?: string }) {

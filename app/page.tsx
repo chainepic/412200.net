@@ -30,6 +30,7 @@ import Stats from "../components/sections/stats/default";
 import Timeline from "../components/sections/timeline/default";
 import Zhenhao from "../components/logos/zhenhao";
 import CompanyNav from "../components/navigation/company-nav";
+import LocalSeoKeywords from "../components/seo/local-keywords";
 import { Badge } from "../components/ui/badge";
 import { LayoutLines } from "../components/ui/layout-lines";
 import { siteConfig } from "../config/site";
@@ -37,6 +38,7 @@ import { siteConfig } from "../config/site";
 export default function Home() {
   return (
     <main className="bg-background text-foreground min-h-screen w-full">
+      <LocalSeoKeywords />
       <LayoutLines />
       <Navbar
         logo={<Zhenhao />}
@@ -46,6 +48,7 @@ export default function Home() {
         customNavigation={<CompanyNav />}
         mobileLinks={[
           { text: "解决方案", href: "#services" },
+          { text: "服务价格", href: "/pricing" },
           { text: "成功案例", href: "#cases" },
           { text: "关于我们", href: "#about" },
           { text: "联系我们", href: "#contact" },
@@ -72,8 +75,8 @@ export default function Home() {
             </span>
           </Badge>
         }
-        title="湖南醴陵 AI 培训与本地化部署专家"
-        description={`${siteConfig.fullName}，立足湖南醴陵，${siteConfig.stats.years}年专注醴陵AI培训、湖南AI部署与企业智能化。提供企业 API 中转、醴陵AI培训、本地 Agent 搭建、私有化大模型部署，服务醴陵、株洲、长沙及湖南全省。`}
+        title="经验驱动创新，构筑智能未来"
+        description={`${siteConfig.stats.years}年行业深耕，为企业打造可信赖的 AI 解决方案。涵盖企业 API 中转、AI 教学培训、本地 Agent 搭建与私有化部署，支持全国远程交付与上门实施。`}
         mockup={false}
         buttons={[
           {
@@ -111,8 +114,8 @@ export default function Home() {
       />
       <div id="services">
         <CoreServices
-          title="醴陵 AI 三大核心服务"
-          description="湖南醴陵本地团队交付，覆盖 AI 培训、本地化部署与 Agent 搭建，支持醴陵、株洲、长沙企业上门与远程服务。"
+          title="三大核心 AI 服务"
+          description="从模型接入、团队培训到私有化落地，覆盖企业智能化全流程，支持远程与上门交付。"
           services={[
             {
               title: "企业 API 中转",
@@ -126,20 +129,20 @@ export default function Home() {
               ],
             },
             {
-              title: "醴陵 AI 讲课教学",
+              title: "AI 讲课教学",
               description:
-                "湖南醴陵本地 AI 实战培训，面向企业与个人，覆盖大模型应用、Prompt 工程、Agent 开发与 AI 产品设计。",
+                "面向企业与个人的实战培训，覆盖大模型应用、Prompt 工程、Agent 开发与 AI 产品设计。",
               icon: <GraduationCapIcon className="size-6" />,
               highlights: [
+                "¥8,000/天，支持开票",
                 "企业内训与公开课",
-                "分层课程体系",
                 "培训后持续答疑",
               ],
             },
             {
-              title: "醴陵 AI 本地部署",
+              title: "本地 Agent 部署",
               description:
-                "湖南企业私有化 Agent 部署，支持知识库 RAG、工具调用与工作流编排，数据完全自主可控。",
+                "私有化部署 AI Agent，支持知识库 RAG、工具调用与工作流编排，数据完全自主可控。",
               icon: <BotIcon className="size-6" />,
               highlights: [
                 "数据不出企业内网",
@@ -216,8 +219,8 @@ export default function Home() {
         />
       </div>
       <Industries
-        title="湖南本地行业 AI 解决方案"
-        description="深耕醴陵、株洲、长沙及湖南全省，为金融、医疗、制造、电商等行业提供可落地的 AI 部署与培训服务。"
+        title="行业 AI 解决方案"
+        description="覆盖金融、医疗、制造、电商等行业，提供可落地的 AI 部署与培训服务。"
         industries={[
           {
             name: "金融服务",
@@ -251,7 +254,7 @@ export default function Home() {
           client="某大型金融机构"
           challenge="传统风控系统无法及时识别新型欺诈模式，人工审核效率低下，误报率高达 30%，严重影响业务流程和客户体验。"
           solution="基于多年金融行业经验，训练定制化 AI 风控模型，结合实时数据流处理和智能决策引擎，实现秒级风险评估与自动化审核。"
-          quote="醴陵真好网络的 AI 风控系统不仅提升了我们的风险识别能力，更重要的是节省了大量人力成本，真正实现了智能化运营。"
+          quote="我们的 AI 风控系统不仅提升了风险识别能力，更重要的是节省了大量人力成本，真正实现了智能化运营。"
           metrics={[
             { label: "处理效率提升", value: "300%" },
             { label: "识别准确率", value: "92%" },
@@ -266,7 +269,7 @@ export default function Home() {
             {
               year: "2011",
               title: "公司成立",
-              description: "立足醴陵，专注软件开发",
+              description: "立足本地，专注软件开发",
             },
             {
               year: "2015",
@@ -293,64 +296,61 @@ export default function Home() {
       </div>
       <div id="plans">
         <Pricing
-          title="灵活的 AI 服务方案"
-          description="根据企业规模和需求，提供从入门到企业级的 AI 解决方案，均支持定制开发与长期技术支持。"
+          title="服务价格一览"
+          description="透明定价，培训及企业服务支持开具正规发票。查看完整价格表获取详细报价。"
           plans={[
             {
-              name: "API 中转服务",
-              description: "适合需要稳定接入多家大模型的中小企业",
-              price: 0,
-              priceText: "按需报价",
-              priceNote:
-                "按调用量计费，支持 GPT、Claude、国产大模型等多渠道接入。",
+              name: "AI 讲课培训",
+              description: "企业内训 / 公开课，全天实战授课",
+              price: 8000,
+              priceText: "¥8,000",
+              priceNote: "每天，含课程定制与实操。支持开发票。",
               cta: {
                 variant: "glow",
-                label: "咨询 API 方案",
-                href: "#contact",
+                label: "查看培训价格",
+                href: "/pricing",
               },
               features: [
-                "多模型统一接入网关",
-                "密钥管理与权限控制",
-                "实时用量监控与告警",
-                "高可用负载均衡",
-              ],
-              variant: "default",
-            },
-            {
-              name: "AI 培训服务",
-              description: "适合希望快速提升团队 AI 能力的企业",
-              price: 0,
-              priceText: "课程定制",
-              priceNote: "线上/线下授课，支持企业内训与公开课多种形式。",
-              cta: {
-                variant: "default",
-                label: "预约 AI 课程",
-                href: "#contact",
-              },
-              features: [
-                "大模型应用实战培训",
-                "Prompt 工程与 Agent 开发",
-                "AI 产品设计工作坊",
-                "培训后持续答疑支持",
+                "大模型应用实战",
+                "Prompt 与 Agent 开发",
+                "半天课 ¥5,000 起",
+                "培训后答疑支持",
               ],
               variant: "glow-brand",
             },
             {
-              name: "Agent 定制开发",
-              description: "适合需要私有化部署智能体的中大型企业",
+              name: "API 中转服务",
+              description: "多模型统一接入网关",
               price: 0,
-              priceText: "项目制",
-              priceNote: "从需求调研到部署上线，提供全流程交付与运维保障。",
+              priceText: "¥3,000 起",
+              priceNote: "部署费 + ¥2,000/月运维，API 按量计费。",
               cta: {
                 variant: "default",
-                label: "获取定制方案",
-                href: "#contact",
+                label: "查看 API 价格",
+                href: "/pricing",
               },
               features: [
-                "私有化本地 Agent 部署",
-                "企业知识库 RAG 接入",
-                "多工具链与工作流编排",
-                "持续迭代与技术支持",
+                "一次性部署配置",
+                "密钥与权限管理",
+                "实时用量监控",
+              ],
+              variant: "default",
+            },
+            {
+              name: "Agent 定制开发",
+              description: "私有化智能体部署",
+              price: 0,
+              priceText: "¥50,000 起",
+              priceNote: "项目制交付，含 RAG 知识库接入与技术支持。",
+              cta: {
+                variant: "default",
+                label: "查看部署价格",
+                href: "/pricing",
+              },
+              features: [
+                "私有化本地部署",
+                "工作流编排",
+                "持续迭代支持",
               ],
               variant: "glow",
             },
@@ -420,8 +420,8 @@ export default function Home() {
       />
       <div id="contact">
         <Contact
-          title={`联系${siteConfig.name}`}
-          description={`${siteConfig.fullName}，湖南醴陵本地 AI 服务商。醴陵AI培训、湖南AI部署咨询，欢迎扫码微信或发送邮件。`}
+          title="联系我们"
+          description="专业 AI 服务团队，随时为您提供技术咨询与方案设计。欢迎扫码微信或发送邮件。"
         />
         <CTA
           title="准备好开启您的智能转型之旅了吗？"
@@ -450,6 +450,15 @@ export default function Home() {
               { text: "AI 讲课教学", href: "#services" },
               { text: "本地 Agent 搭建", href: "#services" },
               { text: "RAG 知识库建设", href: "#services" },
+            ],
+          },
+          {
+            title: "服务价格",
+            links: [
+              { text: "AI 培训 ¥8,000/天", href: "/pricing" },
+              { text: "API 中转部署", href: "/pricing" },
+              { text: "Agent 定制开发", href: "/pricing" },
+              { text: "完整价格表", href: "/pricing" },
             ],
           },
           {
