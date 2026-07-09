@@ -322,15 +322,15 @@ export default function Home() {
               name: "API 中转服务",
               description: "多模型统一接入网关",
               price: 0,
-              priceText: "¥3,000 起",
-              priceNote: "部署费 + ¥2,000/月运维，API 按量计费。",
+              priceText: "按量计费",
+              priceNote: "API 调用按实际用量结算，部署与运维按需定价。",
               cta: {
                 variant: "default",
                 label: "查看 API 价格",
                 href: "/pricing",
               },
               features: [
-                "一次性部署配置",
+                "按量透明计费",
                 "密钥与权限管理",
                 "实时用量监控",
               ],
@@ -411,7 +411,7 @@ export default function Home() {
               <p className="text-muted-foreground mb-4 max-w-[640px] text-balance">
                 API 中转服务通常 1-2 周可完成部署；AI 培训课程可按 1-5
                 天集中授课安排；Agent 定制开发项目根据复杂度，一般 4-12
-                周完成从需求调研到上线交付。我们提供 30
+                周完成从需求调研到上线交付。我们提供 10
                 分钟免费咨询，帮您评估项目周期和预算。
               </p>
             ),
