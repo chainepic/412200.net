@@ -32,6 +32,7 @@ export interface PricingColumnProps
   icon?: ReactNode;
   description: string;
   price: number;
+  priceText?: string;
   originalPrice?: number;
   promotionText?: ReactNode;
   priceNote: string;
@@ -48,6 +49,7 @@ export function PricingColumn({
   icon,
   description,
   price,
+  priceText,
   originalPrice,
   promotionText,
   priceNote,
@@ -94,15 +96,19 @@ export function PricingColumn({
           )}
           <div className="flex items-center gap-3 lg:flex-col lg:items-start xl:flex-row xl:items-center">
             <div className="flex flex-col gap-1">
-              <div className="flex items-baseline gap-1">
-                <span className="text-muted-foreground text-2xl font-bold">
-                  $
-                </span>
-                <span className="text-6xl font-bold">{price}</span>
-              </div>
+              {priceText ? (
+                <div className="text-4xl font-bold">{priceText}</div>
+              ) : (
+                <div className="flex items-baseline gap-1">
+                  <span className="text-muted-foreground text-2xl font-bold">
+                    $
+                  </span>
+                  <span className="text-6xl font-bold">{price}</span>
+                </div>
+              )}
             </div>
             <div className="flex min-h-[40px] flex-col">
-              {price > 0 && (
+              {!priceText && price > 0 && (
                 <>
                   <span className="text-sm">one-time payment</span>
                   <span className="text-muted-foreground text-sm">

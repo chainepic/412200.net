@@ -14,32 +14,27 @@ interface StatsProps {
   className?: string;
 }
 
-function formatToThousands(value: number) {
-  return Math.round(value / 100) / 10;
-}
-
 const DEFAULT_STATS: StatItemProps[] = [
   {
-    label: "used by",
-    value: formatToThousands(siteConfig.stats.figma),
-    suffix: "k",
-    description: "designers on Figma Community",
+    label: "已有",
+    value: siteConfig.stats.clients,
+    description: "企业客户",
   },
   {
-    label: "over",
-    value: siteConfig.stats.github,
-    description: "clones and forks of the template on GitHub",
+    label: "深耕",
+    value: siteConfig.stats.years,
+    suffix: "年",
+    description: "行业经验",
   },
   {
-    label: "already",
-    value: formatToThousands(siteConfig.stats.cli),
-    suffix: "k",
-    description: "installations with shadcn/ui CLI",
+    label: "累计",
+    value: siteConfig.stats.projects,
+    description: "成功项目",
   },
   {
-    label: "includes",
-    value: siteConfig.stats.sections,
-    description: "blocks and sections",
+    label: "客户",
+    value: siteConfig.stats.satisfaction,
+    description: "满意度",
   },
 ];
 

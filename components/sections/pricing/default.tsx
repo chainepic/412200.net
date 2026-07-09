@@ -41,13 +41,13 @@ const DEFAULT_PRICING_PLANS: PricingColumnProps[] = [
     cta: {
       variant: "default",
       label: "Get all-access",
-      href: siteConfig.pricing.pro,
+      href: siteConfig.getStartedUrl,
     },
     features: [
-      `${siteConfig.stats.templates} templates`,
-      `${siteConfig.stats.sections} blocks and sections`,
-      `${siteConfig.stats.illustrations} illustrations`,
-      `${siteConfig.stats.animations} custom animations`,
+      "Premium templates",
+      "Advanced blocks and sections",
+      "Custom illustrations",
+      "Custom animations",
     ],
     variant: "glow-brand",
   },
@@ -60,7 +60,7 @@ const DEFAULT_PRICING_PLANS: PricingColumnProps[] = [
     cta: {
       variant: "default",
       label: "Get all-access for your team",
-      href: siteConfig.pricing.team,
+      href: siteConfig.getStartedUrl,
     },
     features: [
       "All the templates, components and sections available for your entire team",

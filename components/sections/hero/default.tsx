@@ -32,7 +32,7 @@ const DEFAULT_HERO_BUTTONS: HeroButtonProps[] = [
     variant: "default",
   },
   {
-    href: siteConfig.links.github,
+    href: siteConfig.links.website,
     text: "GitHub",
     variant: "glow",
     icon: <Github className="mr-2 size-4" />,

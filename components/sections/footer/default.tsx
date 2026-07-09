@@ -56,7 +56,7 @@ export default function FooterSection({
       links: [
         { text: "Discord", href: siteConfig.url },
         { text: "Twitter", href: siteConfig.url },
-        { text: "GitHub", href: siteConfig.links.github },
+        { text: "GitHub", href: siteConfig.url },
       ],
     },
   ],
