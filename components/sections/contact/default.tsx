@@ -1,11 +1,10 @@
 "use client";
 
-import { CheckIcon, CopyIcon, MailIcon, MapPinIcon } from "lucide-react";
-import { useState } from "react";
+import Image from "next/image";
+import { MailIcon, MapPinIcon } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 
-import { Button } from "../../ui/button";
 import { Section } from "../../ui/section";
 
 interface ContactProps {
@@ -19,14 +18,6 @@ export default function Contact({
   description = "专业团队随时为您提供技术咨询和解决方案设计。",
   className,
 }: ContactProps) {
-  const [copied, setCopied] = useState(false);
-
-  const copyWechat = async () => {
-    await navigator.clipboard.writeText(siteConfig.contact.wechat);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <Section className={className}>
       <div className="max-w-container mx-auto flex flex-col items-center gap-10 sm:gap-16">
@@ -39,26 +30,23 @@ export default function Contact({
           </p>
         </div>
         <div className="grid w-full max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="border-border/60 bg-card/40 flex flex-col items-center gap-3 rounded-xl border p-6 text-center sm:col-span-3">
+          <div className="border-border/60 bg-card/40 flex flex-col items-center gap-4 rounded-xl border p-6 text-center sm:col-span-3">
             <div className="text-brand text-sm font-medium">微信咨询</div>
-            <div className="text-2xl font-bold tracking-wide">
-              {siteConfig.contact.wechat}
-            </div>
-            <Button variant="outline" size="sm" onClick={copyWechat}>
-              {copied ? (
-                <>
-                  <CheckIcon className="mr-2 size-4" />
-                  已复制
-                </>
-              ) : (
-                <>
-                  <CopyIcon className="mr-2 size-4" />
-                  复制微信号
-                </>
-              )}
-            </Button>
+            <Image
+              src={siteConfig.contact.wechatQrcode}
+              alt={`微信搜一搜 ${siteConfig.contact.wechatSearch}`}
+              width={280}
+              height={120}
+              className="h-auto w-full max-w-[280px] rounded-lg"
+            />
+            <p className="text-muted-foreground text-sm">
+              微信搜一搜：
+              <strong className="text-foreground ml-1">
+                {siteConfig.contact.wechatSearch}
+              </strong>
+            </p>
             <p className="text-muted-foreground text-xs">
-              添加微信备注「AI咨询」，我们将在 24 小时内回复
+              扫码或搜索关注我们，备注「AI咨询」，我们将在 24 小时内回复
             </p>
           </div>
           <div className="border-border/60 bg-card/40 flex flex-col items-center gap-3 rounded-xl border p-6 text-center">

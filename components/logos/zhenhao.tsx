@@ -23,7 +23,7 @@ const Zhenhao = (props: React.SVGProps<SVGSVGElement>) => (
       className="fill-brand text-[11px] font-bold"
       style={{ fontFamily: "system-ui, sans-serif" }}
     >
-      真
+      醴
     </text>
   </svg>
 );

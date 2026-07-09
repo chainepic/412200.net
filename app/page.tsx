@@ -52,7 +52,7 @@ export default function Home() {
         ]}
         actions={[
           {
-            text: `微信：${siteConfig.contact.wechat}`,
+            text: "微信咨询",
             href: "#contact",
             isButton: false,
           },
@@ -73,7 +73,7 @@ export default function Home() {
           </Badge>
         }
         title="湖南醴陵 AI 培训与本地化部署专家"
-        description={`${siteConfig.fullName}，立足湖南醴陵，13年专注醴陵AI培训、湖南AI部署与企业智能化。提供企业 API 中转、醴陵AI培训、本地 Agent 搭建、私有化大模型部署，服务醴陵、株洲、长沙及湖南全省。`}
+        description={`${siteConfig.fullName}，立足湖南醴陵，${siteConfig.stats.years}年专注醴陵AI培训、湖南AI部署与企业智能化。提供企业 API 中转、醴陵AI培训、本地 Agent 搭建、私有化大模型部署，服务醴陵、株洲、长沙及湖南全省。`}
         mockup={false}
         buttons={[
           {
@@ -251,7 +251,7 @@ export default function Home() {
           client="某大型金融机构"
           challenge="传统风控系统无法及时识别新型欺诈模式，人工审核效率低下，误报率高达 30%，严重影响业务流程和客户体验。"
           solution="基于多年金融行业经验，训练定制化 AI 风控模型，结合实时数据流处理和智能决策引擎，实现秒级风险评估与自动化审核。"
-          quote="真好网络的 AI 风控系统不仅提升了我们的风险识别能力，更重要的是节省了大量人力成本，真正实现了智能化运营。"
+          quote="醴陵真好网络的 AI 风控系统不仅提升了我们的风险识别能力，更重要的是节省了大量人力成本，真正实现了智能化运营。"
           metrics={[
             { label: "处理效率提升", value: "300%" },
             { label: "识别准确率", value: "92%" },
@@ -395,11 +395,11 @@ export default function Home() {
             question: "如何联系你们？",
             answer: (
               <p className="text-muted-foreground mb-4 max-w-[640px] text-balance">
-                您可以通过微信{" "}
+                您可以扫描页面底部微信二维码，或在微信搜一搜搜索「
                 <strong className="text-foreground">
-                  {siteConfig.contact.wechat}
-                </strong>{" "}
-                联系我们（添加时备注「AI咨询」），或发送邮件至{" "}
+                  {siteConfig.contact.wechatSearch}
+                </strong>
+                」联系我们（添加时备注「AI咨询」），也可发送邮件至{" "}
                 {siteConfig.contact.email}。我们的技术专家将在 24
                 小时内回复，并为您安排免费的需求沟通会议。
               </p>
@@ -420,15 +420,15 @@ export default function Home() {
       />
       <div id="contact">
         <Contact
-          title="联系醴陵真好网络"
-          description={`${siteConfig.fullName}，湖南醴陵本地 AI 服务商。醴陵AI培训、湖南AI部署咨询，欢迎添加微信或发送邮件。`}
+          title={`联系${siteConfig.name}`}
+          description={`${siteConfig.fullName}，湖南醴陵本地 AI 服务商。醴陵AI培训、湖南AI部署咨询，欢迎扫码微信或发送邮件。`}
         />
         <CTA
           title="准备好开启您的智能转型之旅了吗？"
           buttons={[
             {
               href: "#contact",
-              text: "添加微信咨询",
+              text: "扫码微信咨询",
               variant: "default",
             },
             {
@@ -464,7 +464,7 @@ export default function Home() {
           {
             title: "联系我们",
             links: [
-              { text: `微信：${siteConfig.contact.wechat}`, href: "#contact" },
+              { text: `微信搜：${siteConfig.contact.wechatSearch}`, href: "#contact" },
               { text: siteConfig.contact.email, href: siteConfig.links.email },
               { text: siteConfig.location, href: "#contact" },
               { text: "关于我们", href: "#about" },

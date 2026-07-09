@@ -1,13 +1,13 @@
 export const siteConfig = {
-  name: "真真好网络",
-  shortName: "真好网络",
+  name: "醴陵真好",
+  shortName: "醴陵真好网络",
   fullName: "醴陵真好网络传媒有限公司",
   url: "https://412200.net",
   domain: "412200.net",
   getStartedUrl: "#contact",
   ogImage: "https://412200.net/og.jpg",
   description:
-    "醴陵真好网络传媒有限公司，立足湖南醴陵，13年专注醴陵AI培训、湖南AI部署、企业API中转与本地Agent搭建，服务醴陵、株洲、长沙及湖南全省企业智能化转型。",
+    "醴陵真好网络传媒有限公司，立足湖南醴陵，14年专注醴陵AI培训、湖南AI部署、企业API中转与本地Agent搭建，服务醴陵、株洲、长沙及湖南全省企业智能化转型。",
   location: "湖南省醴陵市",
   version: "2026",
   links: {
@@ -16,12 +16,13 @@ export const siteConfig = {
   },
   contact: {
     email: "contact@412200.net",
-    wechat: "lilingzhenhao",
+    wechatQrcode: "/wechat-qrcode.png",
+    wechatSearch: "醴陵真好",
     location: "湖南省醴陵市",
   },
   stats: {
     clients: "50+",
-    years: 13,
+    years: 14,
     projects: "200+",
     satisfaction: "99%",
     updated: "2026年7月",
@@ -31,9 +32,8 @@ export const siteConfig = {
       "醴陵AI培训_醴陵AI部署_Agent搭建 | 醴陵真好网络传媒有限公司",
     titleTemplate: "%s | 醴陵真好网络传媒有限公司",
     description:
-      "醴陵真好网络传媒有限公司，湖南醴陵本地AI服务商。提供醴陵AI培训、湖南AI培训、醴陵AI部署、本地Agent搭建、企业API中转、RAG知识库与私有化大模型部署。服务醴陵、株洲、长沙及湖南全省，13年经验，微信 lilingzhenhao。",
+      "醴陵真好网络传媒有限公司，湖南醴陵本地AI服务商。提供醴陵AI培训、湖南AI培训、醴陵AI部署、本地Agent搭建、企业API中转、RAG知识库与私有化大模型部署。服务醴陵、株洲、长沙及湖南全省，14年经验，微信搜一搜「醴陵真好」。",
     keywords: [
-      // 醴陵本地
       "醴陵AI培训",
       "醴陵AI部署",
       "醴陵人工智能",
@@ -48,7 +48,6 @@ export const siteConfig = {
       "醴陵智能客服",
       "醴陵电商代运营",
       "醴陵互联网开发",
-      // 湖南省级
       "湖南AI培训",
       "湖南AI部署",
       "湖南人工智能",
@@ -59,14 +58,12 @@ export const siteConfig = {
       "湖南API中转",
       "湖南本地化部署",
       "湖南智能体搭建",
-      // 周边城市
       "株洲AI培训",
       "株洲AI部署",
       "长沙AI培训",
       "长沙AI部署",
       "浏阳AI培训",
       "萍乡AI培训",
-      // 核心业务
       "企业API中转",
       "本地Agent搭建",
       "私有化AI部署",
@@ -75,10 +72,8 @@ export const siteConfig = {
       "大模型微调",
       "AI应用开发",
       "智能客服部署",
-      // 品牌
       "醴陵真好网络传媒有限公司",
-      "真好网络",
-      "真真好网络",
+      "醴陵真好",
       "412200.net",
     ],
     areasServed: ["醴陵市", "株洲市", "长沙市", "浏阳市", "湖南省"],

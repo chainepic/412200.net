@@ -74,7 +74,9 @@ export default function Hero({
   return (
     <Section
       className={cn(
-        "fade-bottom overflow-hidden pb-0 sm:pb-0 md:pb-0",
+        mockup !== false
+          ? "fade-bottom overflow-hidden pb-0 sm:pb-0 md:pb-0"
+          : "pb-16 sm:pb-24",
         className,
       )}
     >
@@ -88,7 +90,7 @@ export default function Hero({
             {description}
           </p>
           {buttons !== false && buttons.length > 0 && (
-            <div className="animate-appear relative z-10 flex justify-center gap-4 opacity-0 delay-300">
+            <div className="animate-appear relative z-10 flex flex-wrap justify-center gap-4 delay-300">
               {buttons.map((button) => (
                 <LinkButton
                   key={`${button.href}-${button.text}`}
