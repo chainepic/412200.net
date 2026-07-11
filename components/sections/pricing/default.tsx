@@ -101,6 +101,7 @@ export default function Pricing({
                 icon={plan.icon}
                 description={plan.description}
                 price={plan.price}
+                priceText={plan.priceText}
                 originalPrice={plan.originalPrice}
                 promotionText={plan.promotionText}
                 priceNote={plan.priceNote}

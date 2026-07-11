@@ -32,15 +32,29 @@ export function PricingPageHeader({
 
 export function PricingCategorySection({
   title,
+  titleHref,
   description,
   children,
   className,
-}: PricingTableProps) {
+}: PricingTableProps & { titleHref?: string }) {
+  const titleEl = titleHref ? (
+    <a
+      href={titleHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-brand w-fit transition-colors"
+    >
+      {title}
+    </a>
+  ) : (
+    title
+  );
+
   return (
     <Section className={className}>
       <div className="max-w-container mx-auto flex flex-col gap-8 sm:gap-12">
         <div className="flex flex-col gap-2">
-          <h2 className="text-2xl font-semibold sm:text-3xl">{title}</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl">{titleEl}</h2>
           <p className="text-muted-foreground text-sm sm:text-base">
             {description}
           </p>

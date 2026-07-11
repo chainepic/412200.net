@@ -11,6 +11,7 @@ export interface PricingItem {
 export interface PricingCategory {
   title: string;
   description: string;
+  titleHref?: string;
   items: PricingItem[];
 }
 
@@ -52,7 +53,8 @@ export const pricingCategories: PricingCategory[] = [
   },
   {
     title: "企业 API 中转",
-    description: "多模型统一接入，稳定高可用，API 调用按量计费，部署与运维按需定价。",
+    titleHref: "https://bytedata.ai",
+    description: "多模型统一接入，稳定高可用，API 调用按量计费，部署与运维按需计费。",
     items: [
       {
         name: "API 调用",
@@ -63,13 +65,13 @@ export const pricingCategories: PricingCategory[] = [
       },
       {
         name: "基础部署",
-        price: "按需定价",
+        price: "按需计费",
         description: "网关部署与多模型接入配置",
         features: ["多模型接入", "密钥管理", "基础监控"],
       },
       {
         name: "运维服务",
-        price: "按需定价",
+        price: "按需计费",
         description: "运维响应、故障处理与版本升级",
         features: ["用量报表", "告警通知", "技术支持"],
       },

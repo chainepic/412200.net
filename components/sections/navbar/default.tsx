@@ -32,7 +32,7 @@ interface NavbarActionProps {
 }
 
 interface NavbarProps {
-  logo?: ReactNode;
+  logo?: ReactNode | false;
   name?: string;
   homeUrl?: string;
   mobileLinks?: NavbarLink[];
@@ -74,7 +74,7 @@ export default function Navbar({
               href={homeUrl}
               className="flex items-center gap-2 text-xl font-bold"
             >
-              {logo}
+              {logo !== false && logo}
               {name}
             </a>
             {showNavigation && (customNavigation || <Navigation />)}

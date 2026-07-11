@@ -17,13 +17,12 @@ import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "服务价格",
-  description: `醴陵真好网络传媒有限公司服务报价：AI讲课培训8000元/天（可开票）、企业API中转、本地Agent部署、RAG知识库建设。醴陵AI培训、湖南AI部署，服务全国客户。`,
+  description: `AI讲课培训、企业API中转、本地Agent部署与RAG知识库建设报价一览。培训支持开票，API按量计费，部署按需计费。`,
   keywords: [
-    "醴陵AI培训价格",
     "AI培训费用",
     "企业API中转价格",
     "Agent部署报价",
-    ...siteConfig.seo.keywords.slice(0, 10),
+    ...siteConfig.seo.keywords.slice(0, 8),
   ],
 };
 
@@ -33,13 +32,14 @@ export default function PricingPage() {
       <LocalSeoKeywords />
       <AmbientBackground />
       <Navbar
-        logo={<Zhenhao />}
+        logo={false}
         name={siteConfig.name}
         homeUrl="/"
         showNavigation
         customNavigation={<CompanyNav />}
         mobileLinks={[
           { text: "解决方案", href: "/#services" },
+          { text: "品牌与案例", href: "/#brand" },
           { text: "服务价格", href: "/pricing" },
           { text: "成功案例", href: "/#cases" },
           { text: "关于我们", href: "/#about" },
@@ -67,6 +67,7 @@ export default function PricingPage() {
         <PricingCategorySection
           key={category.title}
           title={category.title}
+          titleHref={category.titleHref}
           description={category.description}
         >
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -90,7 +91,7 @@ export default function PricingPage() {
           {
             title: "核心服务",
             links: [
-              { text: "企业 API 中转", href: "/#services" },
+              { text: "企业 API 中转", href: siteConfig.links.byteData },
               { text: "AI 讲课教学", href: "/#services" },
               { text: "本地 Agent 搭建", href: "/#services" },
               { text: "服务价格", href: "/pricing" },

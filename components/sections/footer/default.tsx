@@ -82,15 +82,22 @@ export default function FooterSection({
             {columns.map((column) => (
               <FooterColumn key={column.title}>
                 <h3 className="text-md pt-1 font-semibold">{column.title}</h3>
-                {column.links.map((link) => (
-                  <a
-                    key={`${link.href}-${link.text}`}
-                    href={link.href}
-                    className="text-muted-foreground text-sm"
-                  >
-                    {link.text}
-                  </a>
-                ))}
+                {column.links.map((link) => {
+                  const isExternal = /^https?:\/\//.test(link.href);
+
+                  return (
+                    <a
+                      key={`${link.href}-${link.text}`}
+                      href={link.href}
+                      className="text-muted-foreground text-sm"
+                      {...(isExternal
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                    >
+                      {link.text}
+                    </a>
+                  );
+                })}
               </FooterColumn>
             ))}
           </FooterContent>

@@ -40,7 +40,7 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.fullName} - 醴陵AI培训与本地化部署`,
+        alt: `${siteConfig.fullName} - AI培训与本地化部署`,
       },
     ],
   },
@@ -76,8 +76,7 @@ export const jsonLd = {
     name: area,
   })),
   knowsAbout: [
-    "醴陵AI培训",
-    "湖南AI部署",
+    "AI培训",
     "本地Agent搭建",
     "企业API中转",
     "私有化大模型",
@@ -91,16 +90,16 @@ export const jsonLd = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "醴陵AI培训",
-          description: "面向湖南醴陵及周边企业的大模型应用、Prompt工程、Agent开发实战培训",
+          name: "AI培训",
+          description: "面向企业的大模型应用、Prompt工程、Agent开发实战培训",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "醴陵AI部署",
-          description: "本地化私有化AI Agent部署、大模型推理环境与智能体搭建",
+          name: "本地Agent部署",
+          description: "私有化AI Agent部署、大模型推理环境与智能体搭建",
         },
       },
       {

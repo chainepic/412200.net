@@ -15,6 +15,7 @@ import {
   WorkflowIcon,
 } from "lucide-react";
 
+import BrandShowcase from "../components/sections/brand-showcase/default";
 import CaseStudy from "../components/sections/case-study/default";
 import Contact from "../components/sections/contact/default";
 import CoreServices from "../components/sections/core-services/default";
@@ -41,13 +42,14 @@ export default function Home() {
       <LocalSeoKeywords />
       <AmbientBackground />
       <Navbar
-        logo={<Zhenhao />}
+        logo={false}
         name={siteConfig.name}
         homeUrl="/"
         showNavigation
         customNavigation={<CompanyNav />}
         mobileLinks={[
           { text: "解决方案", href: "#services" },
+          { text: "品牌与案例", href: "#brand" },
           { text: "服务价格", href: "/pricing" },
           { text: "成功案例", href: "#cases" },
           { text: "关于我们", href: "#about" },
@@ -119,6 +121,7 @@ export default function Home() {
           services={[
             {
               title: "企业 API 中转",
+              titleHref: siteConfig.links.byteData,
               description:
                 "统一接入 GPT、Claude、国产大模型等多家 API，提供网关、密钥管理、用量监控与故障切换。",
               icon: <NetworkIcon className="size-6" />,
@@ -198,9 +201,15 @@ export default function Home() {
               icon: <Building2Icon className="size-5 stroke-1" />,
             },
             {
-              title: "电商代运营",
+              title: "新媒体营销",
               description:
-                "店铺运营、数据分析、营销优化，提升电商业务转化与复购。",
+                "视频号选题、文案、配图、配音一站式交付，快速打造内容影响力。",
+              icon: <SparklesIcon className="size-5 stroke-1" />,
+            },
+            {
+              title: "跨境电商与独立站",
+              description:
+                "独立站搭建、多币种结账、跨境物流与日常运营，助力品牌出海增长。",
               icon: <ShoppingCartIcon className="size-5 stroke-1" />,
             },
             {
@@ -241,13 +250,16 @@ export default function Home() {
             icon: <FactoryIcon className="size-6" />,
           },
           {
-            name: "电商零售",
+            name: "跨境电商",
             description:
-              "智能客服、推荐系统、运营分析，全面提升电商转化效率。",
+              "独立站搭建与运营、智能客服与转化分析，助力品牌出海增长。",
             icon: <ShoppingCartIcon className="size-6" />,
           },
         ]}
       />
+      <div id="brand">
+        <BrandShowcase />
+      </div>
       <div id="cases">
         <CaseStudy
           industry="金融"
@@ -323,7 +335,7 @@ export default function Home() {
               description: "多模型统一接入网关",
               price: 0,
               priceText: "按量计费",
-              priceNote: "API 调用按实际用量结算，部署与运维按需定价。",
+              priceNote: "API 调用按实际用量结算，部署与运维按需计费。",
               cta: {
                 variant: "default",
                 label: "查看 API 价格",
@@ -340,7 +352,7 @@ export default function Home() {
               name: "Agent 定制开发",
               description: "私有化智能体部署",
               price: 0,
-              priceText: "¥50,000 起",
+              priceText: "按需计费",
               priceNote: "项目制交付，含 RAG 知识库接入与技术支持。",
               cta: {
                 variant: "default",
@@ -446,7 +458,7 @@ export default function Home() {
           {
             title: "核心服务",
             links: [
-              { text: "企业 API 中转", href: "#services" },
+              { text: "企业 API 中转", href: siteConfig.links.byteData },
               { text: "AI 讲课教学", href: "#services" },
               { text: "本地 Agent 搭建", href: "#services" },
               { text: "RAG 知识库建设", href: "#services" },
@@ -462,12 +474,27 @@ export default function Home() {
             ],
           },
           {
+            title: "品牌建设",
+            links: [
+              {
+                text: "醴陵釉下五彩瓷",
+                href: siteConfig.brand.youxiaWucai.url,
+              },
+              {
+                text: "Hi.Toys 跨境独立站",
+                href: siteConfig.brand.hiToys.url,
+              },
+              { text: "视频号新媒体营销", href: "#brand" },
+              { text: "品牌与电商案例", href: "#brand" },
+            ],
+          },
+          {
             title: "解决方案",
             links: [
               { text: "金融服务", href: "#services" },
               { text: "医疗健康", href: "#services" },
               { text: "智能制造", href: "#services" },
-              { text: "电商零售", href: "#services" },
+              { text: "跨境电商", href: "#brand" },
             ],
           },
           {

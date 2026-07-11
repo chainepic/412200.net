@@ -9,6 +9,7 @@ interface CoreServiceProps {
   icon: ReactNode;
   highlights: string[];
   featured?: boolean;
+  titleHref?: string;
 }
 
 interface CoreServicesProps {
@@ -42,17 +43,26 @@ export default function CoreServices({
           <div className="grid gap-4 lg:grid-cols-12 lg:gap-5">
             <Reveal className="lg:col-span-7">
               <div className="bg-muted/20 flex h-full flex-col gap-6 rounded-3xl p-8 sm:p-10">
-                <div className="bg-brand/10 text-brand flex size-12 items-center justify-center rounded-2xl">
-                  {first.icon}
-                </div>
-                <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-brand shrink-0">{first.icon}</span>
                   <h3 className="text-2xl font-semibold tracking-tight">
-                    {first.title}
+                    {first.titleHref ? (
+                      <a
+                        href={first.titleHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-brand transition-colors"
+                      >
+                        {first.title}
+                      </a>
+                    ) : (
+                      first.title
+                    )}
                   </h3>
-                  <p className="text-muted-foreground max-w-[52ch] leading-relaxed">
-                    {first.description}
-                  </p>
                 </div>
+                <p className="text-muted-foreground max-w-[52ch] leading-relaxed">
+                  {first.description}
+                </p>
                 <ul className="mt-auto flex flex-col gap-2">
                   {first.highlights.map((item) => (
                     <li
@@ -71,17 +81,17 @@ export default function CoreServices({
               {rest.map((service, index) => (
                 <Reveal key={service.title} delay={0.08 * (index + 1)}>
                   <div className="bg-muted/15 hover:bg-muted/25 flex h-full flex-col gap-4 rounded-3xl p-6 transition-colors sm:p-7">
-                    <div className="bg-brand/10 text-brand flex size-10 items-center justify-center rounded-xl">
-                      {service.icon}
-                    </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-brand shrink-0">
+                        {service.icon}
+                      </span>
                       <h3 className="text-lg font-semibold tracking-tight">
                         {service.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {service.description}
-                      </p>
                     </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {service.description}
+                    </p>
                     <ul className="flex flex-col gap-1.5">
                       {service.highlights.slice(0, 2).map((item) => (
                         <li
