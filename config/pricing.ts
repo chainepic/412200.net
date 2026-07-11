@@ -118,7 +118,7 @@ export const pricingCategories: PricingCategory[] = [
       },
       {
         name: "网站 / 小程序开发",
-        price: "¥15,000",
+        price: "¥2,000",
         unit: "起",
         description: "企业官网、管理系统、小程序",
         features: ["响应式设计", "后台管理", "SEO 优化"],
