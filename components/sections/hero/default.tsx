@@ -67,20 +67,19 @@ const DEFAULT_HERO_MOCKUP = (
 function HeroVisual() {
   return (
     <div className="relative flex min-h-[280px] items-center justify-center lg:min-h-[360px]">
-      <div className="from-brand/15 via-brand/5 absolute inset-0 rounded-3xl bg-linear-to-br to-transparent" />
-      <div className="relative grid w-full max-w-md grid-cols-2 gap-3 p-6">
+      <div className="relative grid w-full max-w-md grid-cols-2 gap-3.5 p-6">
         {[
-          { label: "API 中转", value: "按量" },
-          { label: "AI 培训", value: "¥8k/天" },
-          { label: "Agent", value: "私有化" },
-          { label: "交付", value: "全国" },
+          { label: "企业客户", value: siteConfig.stats.clients },
+          { label: "行业深耕经验", value: `${siteConfig.stats.years} 年` },
+          { label: "成功交付项目", value: siteConfig.stats.projects },
+          { label: "客户满意度", value: siteConfig.stats.satisfaction },
         ].map((item) => (
           <div
             key={item.label}
-            className="bg-background/60 rounded-2xl p-4 backdrop-blur-sm"
+            className="bg-muted/20 border border-white/5 rounded-2xl p-5 backdrop-blur-sm"
           >
-            <div className="text-muted-foreground text-xs">{item.label}</div>
-            <div className="mt-1 text-lg font-semibold tracking-tight">
+            <div className="text-muted-foreground text-xs font-medium">{item.label}</div>
+            <div className="mt-2 text-2xl font-bold tracking-tight text-foreground">
               {item.value}
             </div>
           </div>

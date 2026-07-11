@@ -93,27 +93,6 @@ export default function Home() {
           },
         ]}
       />
-      <Stats
-        items={[
-          {
-            value: siteConfig.stats.clients,
-            description: "企业客户",
-          },
-          {
-            value: siteConfig.stats.years,
-            suffix: "年",
-            description: "行业深耕经验",
-          },
-          {
-            value: siteConfig.stats.projects,
-            description: "成功交付项目",
-          },
-          {
-            value: siteConfig.stats.satisfaction,
-            description: "客户满意度",
-          },
-        ]}
-      />
       <div id="services">
         <CoreServices
           title="三大核心 AI 服务"
