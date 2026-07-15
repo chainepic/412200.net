@@ -4,6 +4,16 @@
   background:
     radial-gradient(120% 80% at 50% -10%, #d8efe6 0%, transparent 55%),
     linear-gradient(180deg, #e7f4ee 0%, #cfe4d8 42%, #b7d2c4 100%);
+  /* 确保在移动端键盘呼出时，页面可以通过弹性滚动或视口高度调整，避免内容溢出 */
+  height: 100%;
+  min-height: -webkit-fill-available;
+}
+
+/* 针对移动端键盘弹出时的视口高度优化 */
+@media (max-height: 500px) and (orientation: portrait) {
+  .train-root {
+    justify-content: flex-start;
+  }
 }
 
 .train-sky {

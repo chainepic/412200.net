@@ -385,30 +385,31 @@ export default function TypingTrain() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="flex flex-1 flex-col gap-4 py-3"
+              className="flex flex-1 flex-col justify-between gap-3 py-1"
             >
-              <div className="flex items-end justify-between gap-3">
+              {/* 顶部状态栏：减小高度，紧凑布局 */}
+              <div className="flex items-center justify-between gap-3 border-b border-[#102820]/05 pb-2">
                 <div>
-                  <p className="text-xs tracking-widest text-[#0f6b57]">
+                  <p className="text-[10px] tracking-widest text-[#0f6b57] uppercase">
                     {level.shortTitle}
                   </p>
-                  <p className="text-3xl font-semibold tabular-nums">
+                  <p className="text-2xl font-bold tabular-nums leading-none mt-1">
                     {stats.stations}
-                    <span className="text-base font-medium text-[#1a2e28]/45">
+                    <span className="text-xs font-medium text-[#1a2e28]/45 ml-1">
                       /{level.passStations}
                     </span>
                   </p>
                 </div>
                 <div className="text-center">
-                  <p className="text-xs tracking-widest text-[#0f6b57]">连击</p>
-                  <p className="text-3xl font-semibold tabular-nums text-[#b45309]">
+                  <p className="text-[10px] tracking-widest text-[#0f6b57] uppercase">连击</p>
+                  <p className="text-2xl font-bold tabular-nums leading-none text-[#b45309] mt-1">
                     {stats.combo}
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs tracking-widest text-[#0f6b57]">剩余</p>
+                  <p className="text-[10px] tracking-widest text-[#0f6b57] uppercase">剩余</p>
                   <p
-                    className={`text-3xl font-semibold tabular-nums ${
+                    className={`text-2xl font-bold tabular-nums leading-none mt-1 ${
                       secondsLeft <= 10 ? "text-[#b42318]" : ""
                     }`}
                   >
@@ -417,21 +418,25 @@ export default function TypingTrain() {
                 </div>
               </div>
 
-              <TrainTrack
-                trainOffset={trainOffset}
-                flash={flash}
-                label={current.full}
-                stationHint={
-                  level.showPinyin
-                    ? `下一站 · ${current.pinyin}`
-                    : `下一站 · ${current.kind}`
-                }
-              />
+              {/* 轨道与火车：高度微调，保持精致 */}
+              <div className="scale-95 origin-top">
+                <TrainTrack
+                  trainOffset={trainOffset}
+                  flash={flash}
+                  label={current.full}
+                  stationHint={
+                    level.showPinyin
+                      ? `下一站 · ${current.pinyin}`
+                      : `下一站 · ${current.kind}`
+                  }
+                />
+              </div>
 
+              {/* 核心题目展示区：在键盘呼出时，这是视觉焦点。我们通过 flex-1 和 min-h 保证其居中，并适当缩减上下间距 */}
               <motion.div
                 animate={shake ? { x: [0, -8, 8, -5, 5, 0] } : { x: 0 }}
                 transition={{ duration: 0.32 }}
-                className="relative flex flex-1 flex-col items-center justify-center"
+                className="my-auto flex flex-col items-center justify-center py-2"
               >
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -447,11 +452,14 @@ export default function TypingTrain() {
                     />
                   </motion.div>
                 </AnimatePresence>
-                <p className="mt-4 text-sm text-[#1a2e28]/55">{current.kind}</p>
+                <p className="mt-3 text-xs font-medium tracking-wider text-[#1a2e28]/55 bg-white/40 px-2.5 py-0.5 rounded-full border border-[#102820]/05">
+                  {current.kind}
+                </p>
               </motion.div>
 
+              {/* 输入框与确认按钮：紧贴底部，防止被键盘完全遮挡 */}
               <form
-                className="space-y-2"
+                className="space-y-2 mt-auto"
                 onSubmit={(e) => {
                   e.preventDefault();
                   trySubmit();
@@ -468,14 +476,15 @@ export default function TypingTrain() {
                   autoComplete="off"
                   autoCorrect="off"
                   autoCapitalize="off"
+                  spellCheck="false"
                   enterKeyHint="done"
-                  inputMode="text"
+                  inputMode="search"
                   placeholder="输入汉字或拼音"
-                  className="w-full rounded-2xl border border-[#0f6b57]/25 bg-white/80 px-4 py-4 text-center text-xl text-[#102820] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] outline-none backdrop-blur placeholder:text-[#1a2e28]/35 focus:border-[#0f6b57] focus:ring-2 focus:ring-[#0f6b57]/25"
+                  className="w-full rounded-2xl border border-[#0f6b57]/25 bg-white/90 px-4 py-3.5 text-center text-lg text-[#102820] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] outline-none backdrop-blur placeholder:text-[#1a2e28]/35 focus:border-[#0f6b57] focus:ring-2 focus:ring-[#0f6b57]/25"
                 />
                 <button
                   type="submit"
-                  className="w-full rounded-2xl bg-[#102820] px-4 py-3.5 text-base font-semibold text-[#eef7f2] active:scale-[0.98]"
+                  className="w-full rounded-2xl bg-[#102820] px-4 py-3 text-base font-semibold text-[#eef7f2] active:scale-[0.98]"
                 >
                   确认到站
                 </button>
