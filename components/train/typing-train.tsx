@@ -389,7 +389,7 @@ export default function TypingTrain() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="flex flex-1 flex-col justify-between gap-3 py-1"
+              className="flex flex-1 flex-col justify-start gap-4 py-2"
             >
               {/* 顶部状态栏：减小高度，紧凑布局 */}
               <div className="flex items-center justify-between gap-3 border-b border-[#102820]/05 pb-2">
@@ -436,11 +436,11 @@ export default function TypingTrain() {
                 />
               </div>
 
-              {/* 核心题目展示区：在键盘呼出时，这是视觉焦点。我们通过 flex-1 和 min-h 保证其居中，并适当缩减上下间距 */}
+              {/* 核心题目展示区：在键盘呼出时，这是视觉焦点。我们通过紧凑间距保证其距离适中 */}
               <motion.div
                 animate={shake ? { x: [0, -8, 8, -5, 5, 0] } : { x: 0 }}
                 transition={{ duration: 0.32 }}
-                className="my-auto flex flex-col items-center justify-center py-2"
+                className="flex flex-col items-center justify-center py-4 md:py-6"
               >
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -461,9 +461,9 @@ export default function TypingTrain() {
                 </p>
               </motion.div>
 
-              {/* 输入框与确认按钮：紧贴底部，防止被键盘完全遮挡 */}
+              {/* 输入框与确认按钮：紧凑排列，防止被键盘完全遮挡 */}
               <form
-                className="space-y-2 mt-auto"
+                className="space-y-2 mt-2"
                 onSubmit={(e) => {
                   e.preventDefault();
                   trySubmit();
@@ -543,7 +543,8 @@ export default function TypingTrain() {
                       alt="挑战成绩海报"
                       className="max-h-[260px] w-auto object-contain"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity hover:opacity-100">
+                    {/* 增加 pointer-events-none 确保长按事件穿透到 img 元素，从而触发手机原生的保存图片菜单 */}
+                    <div className="absolute inset-0 pointer-events-none flex items-center justify-center bg-black/40 opacity-0 transition-opacity hover:opacity-100">
                       <p className="text-xs font-semibold text-white">长按图片保存或分享</p>
                     </div>
                   </div>
