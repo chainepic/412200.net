@@ -22,6 +22,7 @@ import {
   writeUnlockedLevel,
   type RoundStats,
 } from "@/lib/train/game";
+import { generateShareCardSvg, convertSvgToPng } from "@/lib/train/share";
 import { playCorrect, playMiss, playStart, unlockAudio } from "@/lib/train/sfx";
 import {
   LEVELS,
@@ -84,6 +85,8 @@ export default function TypingTrain() {
   const [flash, setFlash] = useState<"ok" | "miss" | null>(null);
   const [shake, setShake] = useState(false);
   const [justUnlocked, setJustUnlocked] = useState<LevelId | null>(null);
+  const [shareImg, setShareImg] = useState<string | null>(null);
+  const [generatingShare, setGeneratingShare] = useState(false);
 
   const level = LEVELS[levelId];
   const current = deck[0] ?? null;
@@ -103,9 +106,30 @@ export default function TypingTrain() {
     } as Record<LevelId, number>;
     setBests(nextBests);
     setBest(nextBests[1]);
+
+    // 禁用右键菜单、拖拽、复制粘贴，防止作弊
+    const preventDefault = (e: Event) => e.preventDefault();
+    const preventCopyPaste = (e: ClipboardEvent) => {
+      // 允许在输入框内正常打字，但阻止复制粘贴
+      if (document.activeElement?.tagName === "INPUT") {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", preventDefault);
+    document.addEventListener("copy", preventCopyPaste);
+    document.addEventListener("paste", preventCopyPaste);
+    document.addEventListener("dragstart", preventDefault);
+
+    return () => {
+      document.removeEventListener("contextmenu", preventDefault);
+      document.removeEventListener("copy", preventCopyPaste);
+      document.removeEventListener("paste", preventCopyPaste);
+      document.removeEventListener("dragstart", preventDefault);
+    };
   }, []);
 
-  const finishRound = useEffectEvent(() => {
+  const finishRound = useEffectEvent(async () => {
     const nextStats = statsRef.current;
     const scored = scoreForRound(nextStats, levelId);
     const nextBest = writeBestScore(scored.score, levelId);
@@ -123,6 +147,31 @@ export default function TypingTrain() {
 
     setPhase("finished");
     setInput("");
+    setShareImg(null);
+
+    // 异步生成挑战成绩海报
+    setGeneratingShare(true);
+    try {
+      const now = new Date();
+      const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+      
+      const svg = generateShareCardSvg({
+        levelTitle: level.title,
+        stations: nextStats.stations,
+        score: scored.score,
+        accuracy: scored.accuracy,
+        maxCombo: nextStats.maxCombo,
+        unlockedNext: scored.passed && levelId < 3 ? LEVELS[(levelId + 1) as LevelId].shortTitle : null,
+        dateStr,
+      });
+
+      const pngBase64 = await convertSvgToPng(svg);
+      setShareImg(pngBase64);
+    } catch (err) {
+      console.error("Failed to generate share image:", err);
+    } finally {
+      setGeneratingShare(false);
+    }
   });
 
   useEffect(() => {
@@ -294,7 +343,7 @@ export default function TypingTrain() {
                           <p className="font-semibold text-[#102820]">
                             {item.title}
                           </p>
-                          <p className="mt-0.5 text-sm text-[#1a2e28]/6">
+                          <p className="mt-1 text-xs text-[#1a2e28]/60">
                             {item.blurb} · {item.seconds}s · 通关{" "}
                             {item.passStations} 站
                           </p>
@@ -468,6 +517,28 @@ export default function TypingTrain() {
                 )}
               </div>
 
+              {/* 成绩分享海报 (长按保存) */}
+              {generatingShare ? (
+                <div className="flex h-48 flex-col items-center justify-center rounded-2xl border border-[#102820]/10 bg-white/40 backdrop-blur">
+                  <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#0f6b57] border-t-transparent" />
+                  <p className="mt-3 text-xs text-[#1a2e28]/60">正在生成精美成绩海报...</p>
+                </div>
+              ) : shareImg ? (
+                <div className="flex flex-col items-center gap-2">
+                  <div className="relative overflow-hidden rounded-2xl border border-[#102820]/15 shadow-[0_12px_32px_rgba(16,40,32,0.12)]">
+                    <img
+                      src={shareImg}
+                      alt="挑战成绩海报"
+                      className="max-h-[260px] w-auto object-contain"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity hover:opacity-100">
+                      <p className="text-xs font-semibold text-white">长按图片保存或分享</p>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-[#1a2e28]/55">↑ 手机端可长按上方海报保存，分享到朋友圈</p>
+                </div>
+              ) : null}
+
               <TrainTrack
                 trainOffset={Math.max(18, trainOffset)}
                 label={result.passed ? "通关出站" : "本趟结束"}
@@ -586,15 +657,95 @@ function TrainTrack({
                 ? { duration: 1.6, repeat: Infinity, ease: "easeInOut" }
                 : { duration: 0.28 }
             }
-            className="flex items-end gap-0.5"
+            className="flex items-end"
             aria-hidden
           >
-            <span className="mb-1 h-3 w-2 rounded-sm bg-[#f0c36a]" />
-            <span className="flex h-8 w-11 items-center justify-center rounded-md bg-[#1f8f74] text-[10px] font-bold text-white">
-              醴
-            </span>
-            <span className="h-6 w-7 rounded-sm bg-[#14725c]" />
-            <span className="h-6 w-7 rounded-sm bg-[#14725c]" />
+            {/* 火车车头 (带烟囱、车窗、排障器、车轮) */}
+            <div className="relative flex h-9 items-end">
+              {/* 烟囱冒出的小气泡/蒸汽 */}
+              {pulse && (
+                <motion.span
+                  animate={{ y: [-4, -12], opacity: [1, 0], scale: [0.6, 1.2] }}
+                  transition={{ duration: 1.2, repeat: Infinity, ease: "easeOut" }}
+                  className="absolute top-[-6px] left-[6px] h-1.5 w-1.5 rounded-full bg-white/60"
+                />
+              )}
+              
+              {/* 排障器 (前端斜角) */}
+              <div className="h-2 w-2 translate-x-1.5 bg-[#b45309] [clip-path:polygon(100%_0,0%_100%,100%_100%)]" />
+              
+              {/* 车头主体 */}
+              <div className="relative h-8 w-11 rounded-r-md bg-[#1f8f74] shadow-[inset_-1px_1px_0_rgba(255,255,255,0.2)]">
+                {/* 烟囱 */}
+                <div className="absolute top-[-5px] left-[4px] h-1.5 w-2 bg-[#14725c] rounded-t-sm" />
+                {/* 车窗 (亮黄色) */}
+                <div className="absolute top-[5px] right-[2px] h-3 w-3 rounded-sm bg-[#f0c36a] shadow-[0_0_4px_#f0c36a]" />
+                {/* 侧面装饰线条 */}
+                <div className="absolute bottom-[4px] left-[2px] h-1 w-6 bg-[#14725c]/60 rounded-full" />
+                {/* 汉字「醴」 */}
+                <span className="absolute top-[6px] left-[10px] text-[10px] font-bold text-[#eef7f2] leading-none scale-90">
+                  醴
+                </span>
+              </div>
+              
+              {/* 车轮 */}
+              <div className="absolute bottom-[-3px] left-[3px] flex gap-2.5">
+                <motion.div 
+                  animate={pulse ? { rotate: 360 } : { rotate: 0 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  className="h-3 w-3 rounded-full border border-[#102820] bg-[#14725c] flex items-center justify-center"
+                >
+                  <div className="h-1 w-1 rounded-full bg-[#f0c36a]" />
+                </motion.div>
+                <motion.div 
+                  animate={pulse ? { rotate: 360 } : { rotate: 0 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  className="h-3 w-3 rounded-full border border-[#102820] bg-[#14725c] flex items-center justify-center"
+                >
+                  <div className="h-1 w-1 rounded-full bg-[#f0c36a]" />
+                </motion.div>
+              </div>
+            </div>
+
+            {/* 车厢连接器 */}
+            <div className="mb-2 h-[2px] w-1.5 bg-[#5f8f7a]" />
+
+            {/* 第一节客运车厢 */}
+            <div className="relative h-7 w-9 rounded-sm bg-[#14725c] shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]">
+              {/* 车窗 */}
+              <div className="absolute top-[4px] left-[3px] flex gap-1">
+                <div className="h-2 w-2 rounded-2xs bg-[#f0c36a]/90" />
+                <div className="h-2 w-2 rounded-2xs bg-[#f0c36a]/90" />
+                <div className="h-2 w-2 rounded-2xs bg-[#f0c36a]/90" />
+              </div>
+              {/* 车轮 */}
+              <div className="absolute bottom-[-3px] left-[2px] flex gap-2.5">
+                <div className="h-2.5 w-2.5 rounded-full border border-[#102820] bg-[#102820] flex items-center justify-center">
+                  <div className="h-0.5 w-0.5 rounded-full bg-[#9fcdb8]" />
+                </div>
+                <div className="h-2.5 w-2.5 rounded-full border border-[#102820] bg-[#102820] flex items-center justify-center">
+                  <div className="h-0.5 w-0.5 rounded-full bg-[#9fcdb8]" />
+                </div>
+              </div>
+            </div>
+
+            {/* 车厢连接器 */}
+            <div className="mb-2 h-[2px] w-1.5 bg-[#5f8f7a]" />
+
+            {/* 第二节货运/煤水车厢 */}
+            <div className="relative h-6 w-8 rounded-sm bg-[#14725c] shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]">
+              {/* 车厢内装载物 (煤炭/货物起伏) */}
+              <div className="absolute top-[-3px] left-[1px] right-[1px] h-1 bg-[#102820] rounded-t-sm" />
+              {/* 车轮 */}
+              <div className="absolute bottom-[-3px] left-[1.5px] flex gap-2">
+                <div className="h-2.5 w-2.5 rounded-full border border-[#102820] bg-[#102820] flex items-center justify-center">
+                  <div className="h-0.5 w-0.5 rounded-full bg-[#9fcdb8]" />
+                </div>
+                <div className="h-2.5 w-2.5 rounded-full border border-[#102820] bg-[#102820] flex items-center justify-center">
+                  <div className="h-0.5 w-0.5 rounded-full bg-[#9fcdb8]" />
+                </div>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
 
