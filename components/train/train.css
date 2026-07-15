@@ -1,0 +1,43 @@
+.train-root {
+  --train-ink: #102820;
+  --train-jade: #0f6b57;
+  background:
+    radial-gradient(120% 80% at 50% -10%, #d8efe6 0%, transparent 55%),
+    linear-gradient(180deg, #e7f4ee 0%, #cfe4d8 42%, #b7d2c4 100%);
+}
+
+.train-sky {
+  background:
+    radial-gradient(
+      ellipse 70% 40% at 80% 12%,
+      rgba(255, 214, 150, 0.35),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 50% 30% at 12% 18%,
+      rgba(255, 255, 255, 0.45),
+      transparent 55%
+    );
+}
+
+.train-haze {
+  background-image: repeating-linear-gradient(
+    -12deg,
+    transparent,
+    transparent 18px,
+    rgba(16, 40, 32, 0.025) 18px,
+    rgba(16, 40, 32, 0.025) 19px
+  );
+}
+
+.train-title {
+  font-family:
+    "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "SimSun",
+    serif;
+}
+
+.train-cta {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
