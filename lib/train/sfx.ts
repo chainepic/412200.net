@@ -14,12 +14,28 @@ function getCtx() {
   return audioCtx;
 }
 
-export async function unlockAudio() {
+export function unlockAudio() {
   const ctx = getCtx();
   if (!ctx) return;
   if (ctx.state === "suspended") {
-    await ctx.resume();
+    void ctx.resume();
   }
+}
+
+// 自动监听移动端的首次触摸/点击事件，在用户与页面的第一次交互时瞬间激活 Web Audio Context
+if (typeof window !== "undefined") {
+  const unlock = () => {
+    const ctx = getCtx();
+    if (ctx) {
+      if (ctx.state === "suspended") {
+        void ctx.resume();
+      }
+      window.removeEventListener("click", unlock);
+      window.removeEventListener("touchstart", unlock);
+    }
+  };
+  window.addEventListener("click", unlock, { passive: true });
+  window.addEventListener("touchstart", unlock, { passive: true });
 }
 
 function tone(

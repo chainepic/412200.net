@@ -37,13 +37,10 @@ export function normalizeInput(value: string) {
 
 export function matchesPlace(
   input: string,
-  place: { text: string; pinyinPlain: string },
+  place: { text: string },
 ) {
   const value = normalizeInput(input);
-  if (!value) return false;
-  if (value === place.text) return true;
-  const ascii = value.toLowerCase().replace(/[^a-z]/g, "");
-  return ascii.length > 0 && ascii === place.pinyinPlain;
+  return value === place.text;
 }
 
 export function scoreForRound(stats: RoundStats, levelId: LevelId) {

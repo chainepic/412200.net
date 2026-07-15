@@ -197,8 +197,8 @@ export default function TypingTrain() {
     setBest(readBestScore(id));
   };
 
-  const start = useCallback(async () => {
-    await unlockAudio();
+  const start = useCallback(() => {
+    unlockAudio();
     playStart();
     const nextStats = emptyStats();
     statsRef.current = nextStats;

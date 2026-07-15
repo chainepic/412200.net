@@ -106,34 +106,13 @@ export function generateShareCardSvg(data: ShareCardData): string {
         <text x="0" y="72" font-size="11" fill="#1a2e28" opacity="0.5">生成时间：${dateStr}</text>
       </g>
 
-      <!-- 右侧：极简二维码视觉占位 (经典定位角) -->
+      <!-- 右侧：真实二维码 (链接到 https://412200.net/train) -->
       <g transform="translate(430, 10)">
         <rect width="90" height="90" fill="#ffffff" rx="16" filter="drop-shadow(0 8px 20px rgba(16,40,32,0.08))" />
-        <!-- 极简二维码微缩图样 -->
-        <rect x="8" y="8" width="74" height="74" fill="none" stroke="#102820" stroke-width="1" opacity="0.1" />
-        
-        <!-- 四个角的定位块 -->
-        <rect x="14" y="14" width="20" height="20" fill="#0f6b57" rx="4" />
-        <rect x="18" y="18" width="12" height="12" fill="#ffffff" rx="2" />
-        <rect x="21" y="21" width="6" height="6" fill="#0f6b57" rx="1" />
-
-        <rect x="56" y="14" width="20" height="20" fill="#0f6b57" rx="4" />
-        <rect x="60" y="18" width="12" height="12" fill="#ffffff" rx="2" />
-        <rect x="63" y="21" width="6" height="6" fill="#0f6b57" rx="1" />
-
-        <rect x="14" y="56" width="20" height="20" fill="#0f6b57" rx="4" />
-        <rect x="18" y="60" width="12" height="12" fill="#ffffff" rx="2" />
-        <rect x="21" y="63" width="6" height="6" fill="#0f6b57" rx="1" />
-
-        <!-- 内部随机像素点装饰 -->
-        <rect x="42" y="20" width="6" height="12" fill="#102820" rx="1" />
-        <rect x="42" y="38" width="12" height="6" fill="#102820" rx="1" />
-        <rect x="56" y="42" width="14" height="6" fill="#102820" rx="1" />
-        <rect x="56" y="56" width="6" height="14" fill="#102820" rx="1" />
-        <rect x="38" y="56" width="12" height="6" fill="#102820" rx="1" />
-        <rect x="38" y="68" width="18" height="8" fill="#102820" rx="1" />
-        <rect x="20" y="42" width="12" height="6" fill="#102820" rx="1" />
-        <circle cx="32" cy="32" r="4" fill="#102820" />
+        <g transform="translate(8, 8) scale(2.74)" shape-rendering="crispEdges">
+          <path fill="#ffffff" d="M0 0h27v27H0z"/>
+          <path stroke="#0f6b57" d="M1 1.5h7m1 0h1m2 0h3m1 0h1m2 0h7M1 2.5h1m5 0h1m3 0h3m2 0h2m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h2m4 0h2m2 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m2 0h1m1 0h3m2 0h1m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m3 0h2m3 0h2m1 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h2m1 0h1m2 0h3m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M14 8.5h2M1 9.5h1m1 0h1m3 0h2m2 0h2m1 0h1m5 0h1m2 0h1m1 0h1M1 10.5h1m1 0h4m1 0h3m2 0h1m1 0h2m1 0h1m3 0h1m1 0h2M1 11.5h5m1 0h2m1 0h1m3 0h2m2 0h1m1 0h4m1 0h1M1 12.5h1m1 0h1m1 0h2m5 0h4m2 0h1m3 0h1M4 13.5h2m1 0h1m1 0h1m2 0h1m1 0h1m3 0h1m2 0h1m3 0h1M3 14.5h1m4 0h2m1 0h1m2 0h1m1 0h1m1 0h1m5 0h2M1 15.5h3m2 0h3m1 0h3m1 0h2m1 0h1m4 0h2m1 0h1M5 16.5h1m4 0h1m3 0h2m4 0h3M1 17.5h2m1 0h4m1 0h1m1 0h5m1 0h5m2 0h1M9 18.5h1m3 0h1m3 0h1m3 0h1m3 0h1M1 19.5h7m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m3 0h1M1 20.5h1m5 0h1m2 0h1m1 0h4m1 0h1m3 0h1M1 21.5h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h7m2 0h1M1 22.5h1m1 0h3m1 0h1m3 0h1m9 0h1m1 0h1M1 23.5h1m1 0h3m1 0h1m1 0h6m1 0h2m2 0h3m1 0h2M1 24.5h1m5 0h1m6 0h3m3 0h2M1 25.5h7m1 0h3m3 0h4m3 0h1m2 0h1"/>
+        </g>
       </g>
     </g>
   </svg>`;

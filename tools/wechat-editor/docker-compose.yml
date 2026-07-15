@@ -1,0 +1,7 @@
+services:
+  wechat-md:
+    image: doocs/md:latest
+    container_name: wechat-md-editor
+    restart: unless-stopped
+    ports:
+      - "8899:80"
