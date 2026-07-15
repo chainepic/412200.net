@@ -73,7 +73,6 @@ export default function TypingTrain() {
   const [levelId, setLevelId] = useState<LevelId>(1);
   const [unlocked, setUnlocked] = useState<LevelId>(1);
   const [deck, setDeck] = useState<TrainWord[]>([]);
-  const [input, setInput] = useState("");
   const [secondsLeft, setSecondsLeft] = useState(LEVELS[1].seconds);
   const [stats, setStats] = useState<RoundStats>(emptyStats);
   const [best, setBest] = useState(0);
@@ -146,7 +145,9 @@ export default function TypingTrain() {
     }
 
     setPhase("finished");
-    setInput("");
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
     setShareImg(null);
 
     // 异步生成挑战成绩海报
@@ -202,7 +203,9 @@ export default function TypingTrain() {
     const nextStats = emptyStats();
     statsRef.current = nextStats;
     setDeck(createDeck(levelId));
-    setInput("");
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
     setSecondsLeft(LEVELS[levelId].seconds);
     setStats(nextStats);
     setFlash(null);
@@ -230,7 +233,9 @@ export default function TypingTrain() {
           statsRef.current = next;
           return next;
         });
-        setInput("");
+        if (inputRef.current) {
+          inputRef.current.value = "";
+        }
         setDeck((prev) => {
           const rest = prev.slice(1);
           if (rest.length > 0) return rest;
@@ -249,7 +254,9 @@ export default function TypingTrain() {
           statsRef.current = next;
           return next;
         });
-        setInput("");
+        if (inputRef.current) {
+          inputRef.current.value = "";
+        }
         window.setTimeout(() => setShake(false), 320);
       }
 
@@ -260,18 +267,15 @@ export default function TypingTrain() {
 
   const trySubmit = useCallback(() => {
     if (phase !== "playing" || !current) return;
-    const value = normalizeInput(input);
+    const rawValue = inputRef.current?.value || "";
+    const value = normalizeInput(rawValue);
     if (!value) return;
     bumpWord(matchesPlace(value, current));
-  }, [bumpWord, current, input, phase]);
+  }, [bumpWord, current, phase]);
 
   const onChange = (value: string) => {
-    if (phase !== "playing" || !current) {
-      setInput(value);
-      return;
-    }
+    if (phase !== "playing" || !current) return;
     const next = normalizeInput(value);
-    setInput(next);
     if (matchesPlace(next, current)) {
       bumpWord(true);
     }
@@ -471,7 +475,6 @@ export default function TypingTrain() {
                 <input
                   id="train-input"
                   ref={inputRef}
-                  value={input}
                   onChange={(e) => onChange(e.target.value)}
                   autoComplete="off"
                   autoCorrect="off"
