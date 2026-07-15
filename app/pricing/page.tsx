@@ -41,6 +41,7 @@ export default function PricingPage() {
           { text: "解决方案", href: "/#services" },
           { text: "品牌与案例", href: "/#brand" },
           { text: "服务价格", href: "/pricing" },
+          { text: "釉下五彩瓷", href: "https://youxiawucaici.com" },
           { text: "成功案例", href: "/#cases" },
           { text: "关于我们", href: "/#about" },
           { text: "联系我们", href: "/#contact" },

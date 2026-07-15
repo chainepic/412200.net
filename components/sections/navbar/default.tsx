@@ -127,6 +127,8 @@ export default function Navbar({
                     <a
                       key={`${link.href}-${link.text}`}
                       href={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="text-muted-foreground hover:text-foreground"
                     >
                       {link.text}
