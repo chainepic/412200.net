@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { title: "解决方案", href: "/#services" },
+  { title: "文章", href: "/articles" },
   { title: "品牌与案例", href: "/#brand" },
   { title: "服务价格", href: "/pricing" },
   { title: "釉下五彩瓷", href: "https://youxiawucaici.com" },

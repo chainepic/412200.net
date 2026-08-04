@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import { buildFooterColumns } from "@/components/articles/site-chrome";
+import CompanyNav from "@/components/navigation/company-nav";
+import CTA from "@/components/sections/cta/default";
 import Footer from "@/components/sections/footer/default";
 import Navbar from "@/components/sections/navbar/default";
 import {
@@ -7,17 +10,14 @@ import {
   PricingCategorySection,
   PricingPageHeader,
 } from "@/components/sections/pricing/pricing-page";
-import CTA from "@/components/sections/cta/default";
 import LocalSeoKeywords from "@/components/seo/local-keywords";
-import Zhenhao from "@/components/logos/zhenhao";
-import CompanyNav from "@/components/navigation/company-nav";
 import { AmbientBackground } from "@/components/ui/ambient-background";
 import { pricingCategories } from "@/config/pricing";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "服务价格",
-  description: `AI讲课培训、企业API中转、本地Agent部署、FDE驻场交付与RAG知识库建设报价一览。培训支持开票，FDE入场常驻¥200,000/月起。`,
+  description: `AI讲课培训、企业API中转、本地Agent部署、FDE驻场交付与RAG知识库建设报价一览。培训支持开票，FDE入场常驻¥50,000/月起。`,
   keywords: [
     "AI培训费用",
     "企业API中转价格",
@@ -40,6 +40,7 @@ export default function PricingPage() {
         customNavigation={<CompanyNav />}
         mobileLinks={[
           { text: "解决方案", href: "/#services" },
+          { text: "文章", href: "/articles" },
           { text: "品牌与案例", href: "/#brand" },
           { text: "服务价格", href: "/pricing" },
           { text: "釉下五彩瓷", href: "https://youxiawucaici.com" },
@@ -87,39 +88,8 @@ export default function PricingPage() {
         ]}
       />
       <Footer
-        logo={<Zhenhao />}
         name={siteConfig.fullName}
-        columns={[
-          {
-            title: "核心服务",
-            links: [
-              { text: "企业 API 中转", href: siteConfig.links.byteData },
-              { text: "AI 讲课教学", href: "/#services" },
-              { text: "本地 Agent 搭建", href: "/#services" },
-              { text: "FDE 驻场交付", href: "/#services" },
-            ],
-          },
-          {
-            title: "价格方案",
-            links: [
-              { text: "AI 培训 ¥8,000/天", href: "/pricing" },
-              { text: "API 中转部署", href: "/pricing" },
-              { text: "FDE ¥200,000/月起", href: "/pricing" },
-              { text: "技术咨询", href: "/pricing" },
-            ],
-          },
-          {
-            title: "联系我们",
-            links: [
-              {
-                text: `微信搜：${siteConfig.contact.wechatSearch}`,
-                href: "/#contact",
-              },
-              { text: siteConfig.contact.email, href: siteConfig.links.email },
-              { text: "关于我们", href: "/#about" },
-            ],
-          },
-        ]}
+        columns={buildFooterColumns()}
         copyright={`© 2026 ${siteConfig.fullName}. 保留所有权利.`}
         policies={[
           { text: "隐私政策", href: "/#contact" },

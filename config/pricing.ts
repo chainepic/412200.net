@@ -112,7 +112,7 @@ export const pricingCategories: PricingCategory[] = [
     items: [
       {
         name: "FDE 入场常驻",
-        price: "¥200,000",
+        price: "¥50,000",
         unit: "/月起",
         description: "资深工程师驻场全职投入，深度对接业务，交付可用的 AI 系统与能力",
         features: [

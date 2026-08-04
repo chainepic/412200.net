@@ -16,6 +16,8 @@ import {
   WorkflowIcon,
 } from "lucide-react";
 
+import { buildFooterColumns } from "../components/articles/site-chrome";
+import CompanyNav from "../components/navigation/company-nav";
 import BrandShowcase from "../components/sections/brand-showcase/default";
 import CaseStudy from "../components/sections/case-study/default";
 import Contact from "../components/sections/contact/default";
@@ -28,12 +30,9 @@ import Industries from "../components/sections/industries/default";
 import Items from "../components/sections/items/default";
 import Navbar from "../components/sections/navbar/default";
 import Pricing from "../components/sections/pricing/default";
-import Stats from "../components/sections/stats/default";
 import Timeline from "../components/sections/timeline/default";
-import Zhenhao from "../components/logos/zhenhao";
-import CompanyNav from "../components/navigation/company-nav";
-import { AmbientBackground } from "../components/ui/ambient-background";
 import LocalSeoKeywords from "../components/seo/local-keywords";
+import { AmbientBackground } from "../components/ui/ambient-background";
 import { Badge } from "../components/ui/badge";
 import { siteConfig } from "../config/site";
 
@@ -50,6 +49,7 @@ export default function Home() {
         customNavigation={<CompanyNav />}
         mobileLinks={[
           { text: "解决方案", href: "#services" },
+          { text: "文章", href: "/articles" },
           { text: "品牌与案例", href: "#brand" },
           { text: "服务价格", href: "/pricing" },
           { text: "釉下五彩瓷", href: "https://youxiawucaici.com" },
@@ -140,7 +140,7 @@ export default function Home() {
                 "Forward Deployed Engineer 前线工程师常驻客户现场，深度对接业务，端到端推进 AI 产品落地与持续迭代。",
               icon: <UserCogIcon className="size-6" />,
               highlights: [
-                "入场常驻 ¥200,000/月起",
+                "入场常驻 ¥50,000/月起",
                 "驻场全职，贴合业务现场",
                 "交付可用系统并赋能团队",
               ],
@@ -361,8 +361,8 @@ export default function Home() {
             {
               name: "FDE 驻场交付",
               description: "前线工程师入场常驻",
-              price: 200000,
-              priceText: "¥200,000",
+              price: 50000,
+              priceText: "¥50,000",
               priceNote: "每月起，资深工程师驻场全职投入，端到端推进 AI 落地。",
               cta: {
                 variant: "default",
@@ -419,7 +419,7 @@ export default function Home() {
               <p className="text-muted-foreground mb-4 max-w-[640px] text-balance">
                 适合需要资深工程师常驻现场、快速推进 AI
                 落地的企业：业务场景复杂、内部研发带宽不足，或希望一边交付可用系统、一边完成知识转移与团队赋能。入场常驻费用从
-                ¥200,000/月起，支持开票与签约合同。
+                ¥50,000/月起，支持开票与签约合同。
               </p>
             ),
           },
@@ -472,61 +472,8 @@ export default function Home() {
         />
       </div>
       <Footer
-        logo={<Zhenhao />}
         name={siteConfig.fullName}
-        columns={[
-          {
-            title: "核心服务",
-            links: [
-              { text: "企业 API 中转", href: siteConfig.links.byteData },
-              { text: "AI 讲课教学", href: "#services" },
-              { text: "本地 Agent 搭建", href: "#services" },
-              { text: "FDE 驻场交付", href: "#services" },
-            ],
-          },
-          {
-            title: "服务价格",
-            links: [
-              { text: "AI 培训 ¥8,000/天", href: "/pricing" },
-              { text: "API 中转部署", href: "/pricing" },
-              { text: "FDE ¥200,000/月起", href: "/pricing" },
-              { text: "完整价格表", href: "/pricing" },
-            ],
-          },
-          {
-            title: "品牌建设",
-            links: [
-              {
-                text: "醴陵釉下五彩瓷",
-                href: siteConfig.brand.youxiaWucai.url,
-              },
-              {
-                text: "Hi.Toys 跨境独立站",
-                href: siteConfig.brand.hiToys.url,
-              },
-              { text: "视频号新媒体营销", href: "#brand" },
-              { text: "品牌与电商案例", href: "#brand" },
-            ],
-          },
-          {
-            title: "解决方案",
-            links: [
-              { text: "金融服务", href: "#services" },
-              { text: "医疗健康", href: "#services" },
-              { text: "智能制造", href: "#services" },
-              { text: "跨境电商", href: "#brand" },
-            ],
-          },
-          {
-            title: "联系我们",
-            links: [
-              { text: `微信搜：${siteConfig.contact.wechatSearch}`, href: "#contact" },
-              { text: siteConfig.contact.email, href: siteConfig.links.email },
-              { text: siteConfig.location, href: "#contact" },
-              { text: "关于我们", href: "#about" },
-            ],
-          },
-        ]}
+        columns={buildFooterColumns()}
         copyright={`© 2026 ${siteConfig.fullName}. 保留所有权利.`}
         policies={[
           { text: "隐私政策", href: "#contact" },
