@@ -20,8 +20,8 @@ interface CoreServicesProps {
 }
 
 export default function CoreServices({
-  title = "三大核心 AI 服务",
-  description = "面向企业的智能化刚需场景，从接入、学习到落地，提供完整解决方案。",
+  title = "四大核心 AI 服务",
+  description = "面向企业的智能化刚需场景，从接入、学习、落地到驻场交付，提供完整解决方案。",
   services = [],
   className,
 }: CoreServicesProps) {

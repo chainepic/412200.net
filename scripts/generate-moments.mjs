@@ -69,7 +69,7 @@ try {
     {
       id: 2,
       name: "02-core-ai-services",
-      title: "三大核心 AI 服务",
+      title: "四大核心 AI 服务",
       getBox: async () => {
         const el = await page.$("div#services > section:nth-of-type(1)");
         if (!el) return null;

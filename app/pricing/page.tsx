@@ -17,11 +17,12 @@ import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "服务价格",
-  description: `AI讲课培训、企业API中转、本地Agent部署与RAG知识库建设报价一览。培训支持开票，API按量计费，部署按需计费。`,
+  description: `AI讲课培训、企业API中转、本地Agent部署、FDE驻场交付与RAG知识库建设报价一览。培训支持开票，FDE入场常驻¥200,000/月起。`,
   keywords: [
     "AI培训费用",
     "企业API中转价格",
     "Agent部署报价",
+    "FDE驻场交付",
     ...siteConfig.seo.keywords.slice(0, 8),
   ],
 };
@@ -95,7 +96,7 @@ export default function PricingPage() {
               { text: "企业 API 中转", href: siteConfig.links.byteData },
               { text: "AI 讲课教学", href: "/#services" },
               { text: "本地 Agent 搭建", href: "/#services" },
-              { text: "服务价格", href: "/pricing" },
+              { text: "FDE 驻场交付", href: "/#services" },
             ],
           },
           {
@@ -103,7 +104,7 @@ export default function PricingPage() {
             links: [
               { text: "AI 培训 ¥8,000/天", href: "/pricing" },
               { text: "API 中转部署", href: "/pricing" },
-              { text: "Agent 定制开发", href: "/pricing" },
+              { text: "FDE ¥200,000/月起", href: "/pricing" },
               { text: "技术咨询", href: "/pricing" },
             ],
           },

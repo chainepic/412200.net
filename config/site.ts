@@ -7,7 +7,7 @@ export const siteConfig = {
   getStartedUrl: "#contact",
   ogImage: "https://412200.net/og.jpg",
   description:
-    "醴陵真好网络传媒有限公司，14年专注 AI 培训、企业 API 中转、本地 Agent 搭建与私有化部署，服务企业智能化转型。",
+    "醴陵真好网络传媒有限公司，14年专注 AI 培训、企业 API 中转、本地 Agent 搭建、FDE 驻场交付与私有化部署，服务企业智能化转型。",
   location: "湖南省醴陵市",
   version: "2026",
   links: {
@@ -52,11 +52,12 @@ export const siteConfig = {
     title: "AI培训 · Agent搭建 · 企业API中转 | 醴陵真好网络",
     titleTemplate: "%s | 醴陵真好网络",
     description:
-      "提供企业 AI 培训、本地 Agent 搭建、API 中转、RAG 知识库与私有化大模型部署。14年交付经验，支持远程与上门服务。微信搜一搜「醴陵真好」。",
+      "提供企业 AI 培训、本地 Agent 搭建、API 中转、FDE 驻场交付、RAG 知识库与私有化大模型部署。14年交付经验，支持远程与上门服务。微信搜一搜「醴陵真好」。",
     keywords: [
       "AI培训",
       "企业API中转",
       "本地Agent搭建",
+      "FDE驻场交付",
       "私有化AI部署",
       "RAG知识库建设",
       "AI工作流自动化",

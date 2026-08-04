@@ -12,6 +12,7 @@ import {
   ShieldCheckIcon,
   ShoppingCartIcon,
   SparklesIcon,
+  UserCogIcon,
   WorkflowIcon,
 } from "lucide-react";
 
@@ -79,7 +80,7 @@ export default function Home() {
           </Badge>
         }
         title="经验驱动创新，构筑智能未来"
-        description={`${siteConfig.stats.years}年行业深耕，为企业打造可信赖的 AI 解决方案。涵盖企业 API 中转、AI 教学培训、本地 Agent 搭建与私有化部署，支持全国远程交付与上门实施。`}
+        description={`${siteConfig.stats.years}年行业深耕，为企业打造可信赖的 AI 解决方案。涵盖企业 API 中转、AI 教学培训、本地 Agent 搭建、FDE 驻场交付与私有化部署，支持全国远程交付与上门实施。`}
         mockup={false}
         buttons={[
           {
@@ -96,8 +97,8 @@ export default function Home() {
       />
       <div id="services">
         <CoreServices
-          title="三大核心 AI 服务"
-          description="从模型接入、团队培训到私有化落地，覆盖企业智能化全流程，支持远程与上门交付。"
+          title="四大核心 AI 服务"
+          description="从模型接入、团队培训、私有化落地到 FDE 驻场交付，覆盖企业智能化全流程，支持远程与上门实施。"
           services={[
             {
               title: "企业 API 中转",
@@ -131,6 +132,17 @@ export default function Home() {
                 "数据不出企业内网",
                 "开源可审计框架",
                 "全流程交付运维",
+              ],
+            },
+            {
+              title: "FDE 驻场交付",
+              description:
+                "Forward Deployed Engineer 前线工程师常驻客户现场，深度对接业务，端到端推进 AI 产品落地与持续迭代。",
+              icon: <UserCogIcon className="size-6" />,
+              highlights: [
+                "入场常驻 ¥200,000/月起",
+                "驻场全职，贴合业务现场",
+                "交付可用系统并赋能团队",
               ],
             },
           ]}
@@ -346,6 +358,24 @@ export default function Home() {
               ],
               variant: "glow",
             },
+            {
+              name: "FDE 驻场交付",
+              description: "前线工程师入场常驻",
+              price: 200000,
+              priceText: "¥200,000",
+              priceNote: "每月起，资深工程师驻场全职投入，端到端推进 AI 落地。",
+              cta: {
+                variant: "default",
+                label: "查看 FDE 价格",
+                href: "/pricing",
+              },
+              features: [
+                "驻场全职投入",
+                "方案设计与快速验证",
+                "交付上线与团队赋能",
+              ],
+              variant: "default",
+            },
           ]}
         />
       </div>
@@ -380,6 +410,16 @@ export default function Home() {
               <p className="text-muted-foreground mb-4 max-w-[640px] text-balance">
                 本地 Agent
                 方案支持完全私有化部署，数据不出企业内网。我们采用开源可审计的框架，支持本地大模型推理，企业知识库加密存储，并提供完善的访问权限管理和操作审计日志。
+              </p>
+            ),
+          },
+          {
+            question: "FDE 驻场交付适合什么场景？",
+            answer: (
+              <p className="text-muted-foreground mb-4 max-w-[640px] text-balance">
+                适合需要资深工程师常驻现场、快速推进 AI
+                落地的企业：业务场景复杂、内部研发带宽不足，或希望一边交付可用系统、一边完成知识转移与团队赋能。入场常驻费用从
+                ¥200,000/月起，支持开票与签约合同。
               </p>
             ),
           },
@@ -441,7 +481,7 @@ export default function Home() {
               { text: "企业 API 中转", href: siteConfig.links.byteData },
               { text: "AI 讲课教学", href: "#services" },
               { text: "本地 Agent 搭建", href: "#services" },
-              { text: "RAG 知识库建设", href: "#services" },
+              { text: "FDE 驻场交付", href: "#services" },
             ],
           },
           {
@@ -449,7 +489,7 @@ export default function Home() {
             links: [
               { text: "AI 培训 ¥8,000/天", href: "/pricing" },
               { text: "API 中转部署", href: "/pricing" },
-              { text: "Agent 定制开发", href: "/pricing" },
+              { text: "FDE ¥200,000/月起", href: "/pricing" },
               { text: "完整价格表", href: "/pricing" },
             ],
           },

@@ -106,6 +106,27 @@ export const pricingCategories: PricingCategory[] = [
     ],
   },
   {
+    title: "FDE 驻场交付",
+    description:
+      "Forward Deployed Engineer 前线工程师常驻客户现场，端到端推进 AI 产品落地与持续迭代。",
+    items: [
+      {
+        name: "FDE 入场常驻",
+        price: "¥200,000",
+        unit: "/月起",
+        description: "资深工程师驻场全职投入，深度对接业务，交付可用的 AI 系统与能力",
+        features: [
+          "驻场全职投入，贴合业务现场",
+          "需求拆解、方案设计与快速验证",
+          "AI 应用开发、集成与上线运维",
+          "知识转移与内部团队赋能",
+        ],
+        highlight: true,
+        invoice: true,
+      },
+    ],
+  },
+  {
     title: "定制开发与咨询",
     description: "软件开发、AI 应用定制及技术顾问服务。",
     items: [
