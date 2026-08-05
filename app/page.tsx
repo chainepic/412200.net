@@ -206,14 +206,12 @@ export default function Home() {
             },
             {
               title: "数据安全与治理",
-              description:
-                "数据治理体系搭建，确保资产安全可控、合规运营。",
+              description: "数据治理体系搭建，确保资产安全可控、合规运营。",
               icon: <ShieldCheckIcon className="size-5 stroke-1" />,
             },
             {
               title: "智能运维平台",
-              description:
-                "AI 驱动自动化运维，故障预测、快速响应、降本增效。",
+              description: "AI 驱动自动化运维，故障预测、快速响应、降本增效。",
               icon: <CloudCogIcon className="size-5 stroke-1" />,
             },
           ]}
@@ -225,20 +223,17 @@ export default function Home() {
         industries={[
           {
             name: "金融服务",
-            description:
-              "智能风控、反欺诈、客户画像，助力金融机构降本增效。",
+            description: "智能风控、反欺诈、客户画像，助力金融机构降本增效。",
             icon: <Building2Icon className="size-6" />,
           },
           {
             name: "医疗健康",
-            description:
-              "辅助诊断、病历分析、智能问诊，提升医疗服务效率。",
+            description: "辅助诊断、病历分析、智能问诊，提升医疗服务效率。",
             icon: <HeartPulseIcon className="size-6" />,
           },
           {
             name: "智能制造",
-            description:
-              "质量检测、预测性维护、生产优化，推动工业智能化升级。",
+            description: "质量检测、预测性维护、生产优化，推动工业智能化升级。",
             icon: <FactoryIcon className="size-6" />,
           },
           {
@@ -254,17 +249,101 @@ export default function Home() {
       </div>
       <div id="cases">
         <CaseStudy
-          industry="金融"
-          client="某大型金融机构"
-          challenge="传统风控系统无法及时识别新型欺诈模式，人工审核效率低下，误报率高达 30%，严重影响业务流程和客户体验。"
-          solution="基于多年金融行业经验，训练定制化 AI 风控模型，结合实时数据流处理和智能决策引擎，实现秒级风险评估与自动化审核。"
-          quote="我们的 AI 风控系统不仅提升了风险识别能力，更重要的是节省了大量人力成本，真正实现了智能化运营。"
-          metrics={[
-            { label: "处理效率提升", value: "300%" },
-            { label: "识别准确率", value: "92%" },
-            { label: "成本降低", value: "40%" },
-            { label: "部署周期", value: "8周" },
+          title="外贸 CRM 系统"
+          industry="AI 外贸业务系统"
+          product="GoodJob CRM"
+          description="这是一套面向外贸团队的 AI 业务系统：从海外买家发现、跟进成交，到单据与团队赋能，把获客到出单串成一条闭环。"
+          screenshots={[
+            {
+              src: "/cases/goodjob-crm/login.png",
+              title: "登录与 AI Agent",
+              description:
+                "以自动获客、客户管理与商机跟进为核心入口，让 AI 能力融入日常外贸工作。",
+            },
+            {
+              src: "/cases/goodjob-crm/workbench.png",
+              title: "外贸客户工作台",
+              description:
+                "集中呈现待办、线索漏斗与商机进展，帮助业务员及时处理当天工作。",
+            },
+            {
+              src: "/cases/goodjob-crm/leads.png",
+              title: "线索管理",
+              description:
+                "统一管理线索来源、意向、跟进状态与下次跟进时间，减少遗漏。",
+            },
+            {
+              src: "/cases/goodjob-crm/customers.png",
+              title: "客户管理",
+              description:
+                "通过客户分级、健康度、活跃商机与跟进节奏，建立清晰的客户视图。",
+            },
           ]}
+          capabilities={[
+            {
+              title: "自动获客",
+              description:
+                "用自然语言描述目标客户，从企业注册、采购、贸易数据和地图等多源搜索；清洗去重后进入搜客清单，再转为线索或客户。",
+            },
+            {
+              title: "客户与商机管理",
+              description:
+                "支持客户分级、健康度、跟进提醒和公池认领；通过商机看板管理询盘、报价、样品、谈判到成交。",
+            },
+            {
+              title: "触达沟通",
+              description:
+                "AI 编写开发信与跟进序列；支持 WhatsApp 个人号绑定、收发和翻译，并与 CRM 业务数据联动。",
+            },
+            {
+              title: "外贸单据",
+              description:
+                "基于成交数据生成 PI、CI、PL、合同和报价单，支持审批、导出 PDF，以及产品维护、发货跟踪和提成对账。",
+            },
+            {
+              title: "AI Agent（Kevin）",
+              description:
+                "给出目标即可规划并执行搜客、写邮件、管理管道和创建待办；对外发送前需要确认，不编造联系人或执行结果。",
+            },
+            {
+              title: "团队赋能",
+              description:
+                "通过资料库、在线考试、销售打法提炼、企业微信提醒与日报，以及排行和报表沉淀团队能力。",
+            },
+            {
+              title: "日常效率",
+              description:
+                "提供工作台待办、名片 OCR 转线索、导入导出和权限审计，让重复操作集中在一个系统内完成。",
+            },
+          ]}
+          advantages={[
+            {
+              title: "外贸全链路",
+              description:
+                "不只是记录客户，从找客、跟进、邮件与 WhatsApp，到单据、发货和提成，一套系统走完。",
+            },
+            {
+              title: "获客有质量门槛",
+              description:
+                "多源挖掘后清洗去重，强调可联系才进入正式客户，避免垃圾名单堆积。",
+            },
+            {
+              title: "AI 可执行、可管控",
+              description:
+                "Agent 基于真实业务数据执行任务，对外发送等高风险操作必须经过确认。",
+            },
+            {
+              title: "支持私有化部署",
+              description:
+                "可使用自有 MySQL，并配合角色权限和导出审计，适合重视数据控制的外贸团队。",
+            },
+            {
+              title: "经验持续反哺系统",
+              description:
+                "真实案例与销售打法可以沉淀到知识库和 Agent，帮助新人复用团队经验。",
+            },
+          ]}
+          tagline="帮外贸业务员少找垃圾客户、少漏跟进，用 AI 把获客、沟通、成交和单据串起来。"
         />
       </div>
       <div id="about">
@@ -333,11 +412,7 @@ export default function Home() {
                 label: "查看 API 价格",
                 href: "/pricing",
               },
-              features: [
-                "按量透明计费",
-                "密钥与权限管理",
-                "实时用量监控",
-              ],
+              features: ["按量透明计费", "密钥与权限管理", "实时用量监控"],
               variant: "default",
             },
             {
@@ -351,11 +426,7 @@ export default function Home() {
                 label: "查看部署价格",
                 href: "/pricing",
               },
-              features: [
-                "私有化本地部署",
-                "工作流编排",
-                "持续迭代支持",
-              ],
+              features: ["私有化本地部署", "工作流编排", "持续迭代支持"],
               variant: "glow",
             },
             {
