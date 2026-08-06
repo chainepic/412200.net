@@ -86,6 +86,7 @@ export function buildFooterColumns() {
         { text: "密码管理工具", href: "https://tt.box" },
         { text: "Newname", href: "https://newname.ai" },
         { text: "AI创作", href: "https://easymake.ai" },
+        { text: "PokerJudge", href: "https://pokerjudge.com" },
       ],
     },
   ];
