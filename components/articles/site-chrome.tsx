@@ -75,6 +75,7 @@ export function buildFooterColumns() {
     },
     {
       title: "合作伙伴",
+      layout: "row" as const,
       links: [
         { text: "醴陵瓷器", href: "https://youxiawucaici.com" },
         { text: "从夯到拉生成器", href: "https://obpai.com" },
