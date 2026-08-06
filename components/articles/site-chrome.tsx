@@ -73,6 +73,20 @@ export function buildFooterColumns() {
         { text: "关于我们", href: "/#about" },
       ],
     },
+    {
+      title: "合作伙伴",
+      links: [
+        { text: "醴陵瓷器", href: "https://youxiawucaici.com" },
+        { text: "从夯到拉生成器", href: "https://obpai.com" },
+        { text: "AI捐赠", href: "https://aidonate.org" },
+        { text: "AI中转站", href: "https://bytedata.ai" },
+        { text: "CS2开箱模拟器", href: "https://take.skin" },
+        { text: "CS2小程序", href: "https://cs2hot.com" },
+        { text: "密码管理工具", href: "https://tt.box" },
+        { text: "Newname", href: "https://newname.ai" },
+        { text: "AI创作", href: "https://easymake.ai" },
+      ],
+    },
   ];
 }
 
