@@ -17,6 +17,13 @@ export const siteConfig = {
     youxiaWucai: "https://youxiawucaici.com",
     hiToys: "https://hi.toys",
   },
+  /** Priority project links — keep short; not a full sister-site directory */
+  priorityLinks: [
+    { text: "EasyMake.ai", href: "https://easymake.ai" },
+    { text: "OBPAI", href: "https://obpai.com" },
+    { text: "PokerJudge", href: "https://pokerjudge.com" },
+    { text: "take.skin", href: "https://take.skin" },
+  ],
   brand: {
     youxiaWucai: {
       name: "醴陵釉下五彩瓷",

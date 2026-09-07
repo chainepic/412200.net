@@ -19,8 +19,6 @@ interface FooterLink {
 interface FooterColumnProps {
   title: string;
   links: FooterLink[];
-  /** Horizontal full-width row (e.g. partner links) */
-  layout?: "column" | "row";
 }
 
 interface FooterProps {
@@ -80,55 +78,28 @@ export default function FooterSection({
                 <h3 className="text-xl font-bold">{name}</h3>
               </div>
             </FooterColumn>
-            {columns
-              .filter((column) => column.layout !== "row")
-              .map((column) => (
-                <FooterColumn key={column.title}>
-                  <h3 className="text-md pt-1 font-semibold">{column.title}</h3>
-                  {column.links.map((link) => {
-                    const isExternal = /^https?:\/\//.test(link.href);
+            {columns.map((column) => (
+              <FooterColumn key={column.title}>
+                <h3 className="text-md pt-1 font-semibold">{column.title}</h3>
+                {column.links.map((link) => {
+                  const isExternal = /^https?:\/\//.test(link.href);
 
-                    return (
-                      <a
-                        key={`${link.href}-${link.text}`}
-                        href={link.href}
-                        className="text-muted-foreground text-sm"
-                        {...(isExternal
-                          ? { target: "_blank", rel: "noopener noreferrer" }
-                          : {})}
-                      >
-                        {link.text}
-                      </a>
-                    );
-                  })}
-                </FooterColumn>
-              ))}
-          </FooterContent>
-          {columns
-            .filter((column) => column.layout === "row")
-            .map((column) => (
-              <div key={column.title} className="mt-8 flex flex-col gap-3">
-                <h3 className="text-md font-semibold">{column.title}</h3>
-                <div className="flex flex-wrap gap-x-6 gap-y-2">
-                  {column.links.map((link) => {
-                    const isExternal = /^https?:\/\//.test(link.href);
-
-                    return (
-                      <a
-                        key={`${link.href}-${link.text}`}
-                        href={link.href}
-                        className="text-muted-foreground text-sm"
-                        {...(isExternal
-                          ? { target: "_blank", rel: "noopener noreferrer" }
-                          : {})}
-                      >
-                        {link.text}
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
+                  return (
+                    <a
+                      key={`${link.href}-${link.text}`}
+                      href={link.href}
+                      className="text-muted-foreground text-sm"
+                      {...(isExternal
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                    >
+                      {link.text}
+                    </a>
+                  );
+                })}
+              </FooterColumn>
             ))}
+          </FooterContent>
           <FooterBottom>
             <div>{copyright}</div>
             <div className="flex items-center gap-4">

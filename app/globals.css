@@ -221,3 +221,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.aura-page {
+  color-scheme: dark;
+}
+
+html:has(.aura-page) {
+  scroll-behavior: smooth;
+}

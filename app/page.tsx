@@ -376,6 +376,24 @@ export default function Home() {
             },
           ]}
         />
+        <div className="max-w-container mx-auto px-4 pb-12">
+          <div className="mx-auto flex max-w-2xl flex-col items-center gap-3 text-center">
+            <p className="text-muted-foreground text-sm font-medium">相关项目</p>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+              {siteConfig.priorityLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground text-sm underline-offset-4 hover:underline"
+                >
+                  {link.text}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
       <div id="plans">
         <Pricing
