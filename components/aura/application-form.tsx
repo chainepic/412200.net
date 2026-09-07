@@ -4,9 +4,6 @@ import { FormEvent, useState } from "react";
 
 import { auraConfig } from "@/config/aura";
 
-const fieldClass =
-  "w-full rounded-xl border border-[color-mix(in_srgb,#D4AF37_18%,transparent)] bg-[#05070B]/70 px-4 py-3 text-sm text-[#F3E8C8] outline-none transition-colors placeholder:text-[#94A3B8]/55 focus:border-[#D4AF37]";
-
 type Status = "idle" | "submitting" | "success" | "error";
 
 export function AuraApplicationForm() {
@@ -27,6 +24,7 @@ export function AuraApplicationForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: data.get("name"),
+          email: data.get("email"),
           contact: data.get("contact"),
           social: data.get("social"),
           background: data.get("background"),
@@ -53,86 +51,58 @@ export function AuraApplicationForm() {
   }
 
   if (status === "success") {
-    return (
-      <div className="rounded-3xl border border-[color-mix(in_srgb,#D4AF37_28%,transparent)] bg-[#0B0F17]/80 p-8 text-center backdrop-blur-xl sm:p-10">
-        <p className="text-xs tracking-[0.22em] text-[#D4AF37]">APPLICATION RECEIVED</p>
-        <p className="mt-4 text-lg leading-relaxed text-[#F3E8C8]">
-          {message}
-        </p>
-      </div>
-    );
+    return <p className="aura-form-success">{message}</p>;
   }
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="grid gap-5 rounded-3xl border border-[color-mix(in_srgb,#D4AF37_18%,transparent)] bg-[#0B0F17]/80 p-6 backdrop-blur-xl sm:p-8"
-    >
-      <label className="grid gap-2">
-        <span className="text-sm text-[#F3E8C8]">
-          姓名 / 常用昵称 <span className="text-[#D4AF37]">*</span>
-        </span>
+    <form onSubmit={onSubmit} className="aura-form">
+      <label>
+        <span>姓名 / 常用昵称 *</span>
         <input
           required
           name="name"
           maxLength={40}
           autoComplete="name"
-          className={fieldClass}
           placeholder="你希望我们怎么称呼你"
         />
       </label>
 
-      <label className="grid gap-2">
-        <span className="text-sm text-[#F3E8C8]">
-          微信号 / 手机号 <span className="text-[#D4AF37]">*</span>
-        </span>
+      <label>
+        <span>邮箱 *</span>
+        <input
+          required
+          type="email"
+          name="email"
+          maxLength={120}
+          autoComplete="email"
+          placeholder="用来收确认信"
+        />
+      </label>
+
+      <label>
+        <span>微信号 / 手机号 *</span>
         <input
           required
           name="contact"
           maxLength={80}
           autoComplete="tel"
-          className={fieldClass}
-          placeholder="用于联系初审"
+          placeholder="方便我们约时间"
         />
       </label>
 
-      <label className="grid gap-2">
-        <span className="text-sm text-[#F3E8C8]">
-          个人小红书 / 微博 / 即刻 / 社交账号主页链接
-        </span>
-        <input
-          name="social"
-          maxLength={300}
-          className={fieldClass}
-          placeholder="选填，帮助我们提前了解你的审美风格"
-        />
+      <label>
+        <span>小红书 / 微博 / 即刻，有就填</span>
+        <input name="social" maxLength={300} />
       </label>
 
-      <label className="grid gap-2">
-        <span className="text-sm text-[#F3E8C8]">
-          你目前从事的行业或个人背景 <span className="text-[#D4AF37]">*</span>
-        </span>
-        <textarea
-          required
-          name="background"
-          maxLength={500}
-          rows={3}
-          className={fieldClass}
-        />
+      <label>
+        <span>你现在做什么 *</span>
+        <textarea required name="background" maxLength={500} rows={3} />
       </label>
 
-      <label className="grid gap-2">
-        <span className="text-sm text-[#F3E8C8]">
-          在这 7 天中，你最渴望做出的产品或解决的核心痛点是什么？{" "}
-          <span className="text-[#D4AF37]">*</span>
-        </span>
-        <textarea
-          required
-          name="intent"
-          maxLength={1200}
-          rows={5}
-          className={fieldClass}
-        />
+      <label>
+        <span>这七天最想做完的一件事 *</span>
+        <textarea required name="intent" maxLength={1200} rows={5} />
       </label>
 
       <input
@@ -145,15 +115,11 @@ export function AuraApplicationForm() {
       />
 
       {status === "error" && message ? (
-        <p className="text-sm text-red-300">{message}</p>
+        <p className="aura-form-error">{message}</p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="mt-1 rounded-xl bg-[#D4AF37] px-5 py-3.5 text-sm font-medium text-[#05070B] transition-colors hover:bg-[#F3E8C8] disabled:opacity-60"
-      >
-        {status === "submitting" ? "提交中…" : auraConfig.form.submit}
+      <button type="submit" disabled={status === "submitting"}>
+        {status === "submitting" ? "提交中" : auraConfig.form.submit}
       </button>
     </form>
   );

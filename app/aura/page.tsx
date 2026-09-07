@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: auraConfig.ogImage,
-        width: 1536,
-        height: 1024,
+        width: 1376,
+        height: 768,
         alt: auraConfig.seo.title,
       },
     ],

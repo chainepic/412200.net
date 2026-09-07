@@ -223,7 +223,14 @@
 }
 
 .aura-page {
-  color-scheme: dark;
+  color-scheme: light;
+}
+
+html:has(.aura-page),
+html:has(.aura-page) body {
+  background: #fff;
+  color: #2d2d2d;
+  color-scheme: light;
 }
 
 html:has(.aura-page) {
