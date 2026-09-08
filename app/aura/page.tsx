@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   title: { absolute: auraConfig.seo.title },
   description: auraConfig.seo.description,
   alternates: { canonical: auraConfig.url },
+  icons: {
+    icon: [
+      { url: "/aura/favicon.svg", type: "image/svg+xml" },
+      { url: "/aura/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    apple: "/aura/apple-touch-icon.png",
+  },
   openGraph: {
     title: auraConfig.seo.title,
     description: auraConfig.seo.description,
