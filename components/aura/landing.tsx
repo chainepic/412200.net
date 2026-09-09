@@ -1,20 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties } from "react";
 
 import { AuraApplicationForm } from "@/components/aura/application-form";
 import { AuraGallery } from "@/components/aura/gallery";
 import { AuraHero } from "@/components/aura/hero";
 import { AuraNav } from "@/components/aura/nav";
+import { AuraPartnerForm } from "@/components/aura/partner-form";
 import { AuraToTop } from "@/components/aura/to-top";
 import { auraConfig } from "@/config/aura";
 
 export function AuraLanding() {
-  const bookImage = auraConfig.photos[2]?.src ?? auraConfig.photos[0].src;
-  const daysImage = auraConfig.photos[5]?.src ?? auraConfig.photos[0].src;
   const outcomeRows = [
-    auraConfig.deliverables.slice(0, 2),
-    auraConfig.deliverables.slice(2, 4),
+    auraConfig.deliverables.items.slice(0, 2),
+    auraConfig.deliverables.items.slice(2, 4),
   ];
 
   return (
@@ -22,13 +20,57 @@ export function AuraLanding() {
       <AuraNav />
       <AuraHero />
 
-      <section className="aura-welcome">
+      <section id="about" className="aura-about scroll-mt-24">
         <div className="aura-container">
-          <h2>住一周，把产品做上线</h2>
-          <p>
-            {auraConfig.hero.subtitle}
-            {auraConfig.cohort.label}。
-          </p>
+          <p className="aura-about-question aura-display">{auraConfig.about.question}</p>
+          <h2>{auraConfig.about.name}</h2>
+          <p className="aura-about-full">{auraConfig.about.fullName}</p>
+          <p className="aura-about-full-zh">{auraConfig.about.fullNameZh}</p>
+          <div className="aura-about-why">
+            {auraConfig.about.reasons.map((item) => (
+              <article key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="cases" className="aura-cases scroll-mt-24">
+        <div className="aura-container">
+          <h2>{auraConfig.cases.title}</h2>
+          <p className="aura-cases-lead">{auraConfig.cases.lead}</p>
+          <div className="aura-cases-grid">
+            {auraConfig.cases.items.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className={
+                  "featured" in item && item.featured
+                    ? "aura-case-card is-featured"
+                    : "aura-case-card"
+                }
+                {...(item.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                <div className="aura-case-thumb">
+                  <Image
+                    src={item.src}
+                    alt={item.name}
+                    fill
+                    sizes={"featured" in item && item.featured ? "1170px" : "560px"}
+                  />
+                </div>
+                <div className="aura-case-info">
+                  <p className="aura-case-tag">{item.tag}</p>
+                  <h3>{item.name}</h3>
+                  <p>{item.body}</p>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -53,11 +95,29 @@ export function AuraLanding() {
         </div>
       </section>
 
-      <section
-        id="apply"
-        className="aura-book scroll-mt-24"
-        style={{ "--aura-book-image": `url(${bookImage})` } as CSSProperties}
-      >
+      <section id="partner" className="aura-partner scroll-mt-24">
+        <div className="aura-container">
+          <div className="aura-partner-grid">
+            <div>
+              <h2>{auraConfig.partner.title}</h2>
+              <p>{auraConfig.partner.lead}</p>
+            </div>
+            <AuraPartnerForm />
+          </div>
+        </div>
+      </section>
+
+      <section id="apply" className="aura-book scroll-mt-24">
+        <video
+          className="aura-book-video"
+          src="/aura/video/travel-2.mp4"
+          muted
+          autoPlay
+          loop
+          playsInline
+          preload="metadata"
+        />
+        <div className="aura-book-overlay" />
         <div className="aura-container">
           <div className="aura-book-grid">
             <div className="aura-book-copy">
@@ -98,43 +158,17 @@ export function AuraLanding() {
 
       <AuraGallery />
 
-      <section
-        id="days"
-        className="aura-days scroll-mt-24"
-        style={{ "--aura-days-image": `url(${daysImage})` } as CSSProperties}
-      >
+      <section id="days" className="aura-days scroll-mt-24">
         <div className="aura-container">
-          <h2>七天</h2>
-          <div className="aura-carousel">
-            {auraConfig.days.map((item, index) => {
-              const photo = auraConfig.photos[index % auraConfig.photos.length];
-              return (
-                <article key={item.day} className="aura-carousel-card">
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    sizes="500px"
-                  />
-                  <div className="aura-carousel-info">
-                    <h3>{item.title}</h3>
-                    <p>
-                      {item.day}
-                      <br />
-                      {item.body}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+          <h2>{auraConfig.days.title}</h2>
+          <p className="aura-days-lead">{auraConfig.days.lead}</p>
+          <p className="aura-days-body">{auraConfig.days.body}</p>
         </div>
       </section>
 
       <section id="outcomes" className="aura-blog scroll-mt-24">
         <div className="aura-container">
-          <h2>带走什么</h2>
-          <p className="aura-blog-lead">七天结束，你带走这些。</p>
+          <h2>{auraConfig.deliverables.title}</h2>
           {outcomeRows.map((row, rowIndex) => (
             <div key={rowIndex} className="aura-blog-row">
               {row.map((item, index) => {
@@ -151,10 +185,6 @@ export function AuraLanding() {
                       />
                     </div>
                     <div className="aura-blog-info">
-                      <p className="aura-blog-meta">
-                        {String(rowIndex * 2 + index + 1).padStart(2, "0")} ·{" "}
-                        {auraConfig.shortName}
-                      </p>
                       <h3>{item.title}</h3>
                       <p>{item.body}</p>
                     </div>
@@ -184,13 +214,16 @@ export function AuraLanding() {
               <h3>这一周</h3>
               <ul>
                 <li>
+                  <a href="#about">是什么</a>
+                </li>
+                <li>
+                  <a href="#cases">案例</a>
+                </li>
+                <li>
                   <a href="#stay">住哪儿</a>
                 </li>
                 <li>
                   <a href="#days">七天</a>
-                </li>
-                <li>
-                  <a href="#outcomes">带走什么</a>
                 </li>
               </ul>
             </div>
@@ -201,7 +234,7 @@ export function AuraLanding() {
                   <a href="#apply">提交申请</a>
                 </li>
                 <li>
-                  <a href="#gallery">现场照片</a>
+                  <a href="#partner">民宿合作</a>
                 </li>
               </ul>
             </div>
@@ -218,10 +251,6 @@ export function AuraLanding() {
             </div>
           </div>
         </div>
-        <p className="aura-copyright">
-          {auraConfig.name} · {auraConfig.organizer} ·{" "}
-          <Link href="/">412200.net</Link>
-        </p>
       </footer>
 
       <AuraToTop />

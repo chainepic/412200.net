@@ -16,6 +16,16 @@ export type AuraApplicationMail = {
   submittedAt: string;
 };
 
+export type AuraPartnerMail = {
+  stayName: string;
+  contactName: string;
+  email: string;
+  contact: string;
+  city: string;
+  intro: string;
+  submittedAt: string;
+};
+
 function escapeHtml(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -198,7 +208,7 @@ export function internalApplicationMail(application: AuraApplicationMail) {
         ${dossierRow("微信 / 手机", escapeHtml(application.contact))}
         ${dossierRow("社交主页", maybeLink(application.social))}
         ${dossierRow("行业与背景", nl2br(application.background))}
-        ${dossierRow("产品意向 / 核心痛点", nl2br(application.intent))}
+        ${dossierRow("你想解决什么业务痛点？", nl2br(application.intent))}
       </table>
       <p style="margin:24px 0 0;font-size:13px;line-height:1.7;color:${SLATE};text-align:center;">
         请在 24 小时内完成背景初审，并预约 15 分钟 1v1 沟通。
@@ -218,7 +228,7 @@ export function internalApplicationMail(application: AuraApplicationMail) {
     "行业与背景：",
     application.background,
     "",
-    "产品意向 / 核心痛点：",
+    "你想解决什么业务痛点？",
     application.intent,
     "",
     "来源：https://412200.net/aura",
@@ -226,6 +236,84 @@ export function internalApplicationMail(application: AuraApplicationMail) {
 
   return {
     subject: `AURA 新申请｜${application.name}`,
+    html,
+    text,
+  };
+}
+
+export function partnerConfirmationMail(application: AuraPartnerMail) {
+  const name = escapeHtml(application.contactName);
+  const stay = escapeHtml(application.stayName);
+  const html = wrapLetter({
+    preheader: "民宿合作意向已收到，我们会尽快看材料。",
+    inner: `
+      <h1 style="margin:0;font-size:26px;line-height:1.35;font-weight:500;color:${CHAMPAGNE};text-align:center;">合作意向收到了</h1>
+      <p style="margin:28px 0 0;font-size:15px;line-height:1.85;color:${INK};">${name}，你好。</p>
+      <p style="margin:16px 0 0;font-size:15px;line-height:1.85;color:${INK};">
+        「${stay}」的合作表单我们已经看到。合适的话，会再联系你。
+      </p>
+      <p style="margin:16px 0 0;font-size:13px;line-height:1.7;color:${SLATE};text-align:center;">
+        这封信只说明收到了，还不等于合作定了。
+      </p>
+    `,
+  });
+
+  const text = [
+    "AURA 计划 · 民宿合作意向收到了",
+    "",
+    `${application.contactName}，你好。`,
+    "",
+    `「${application.stayName}」的合作表单我们已经看到。合适的话会再联系你。`,
+    "",
+    "这封信只说明收到了，还不等于合作定了。",
+    "",
+    "AURA PLAN",
+  ].join("\n");
+
+  return {
+    subject: "AURA PLAN｜民宿合作意向收到了",
+    html,
+    text,
+  };
+}
+
+export function internalPartnerMail(application: AuraPartnerMail) {
+  const html = wrapLetter({
+    preheader: `${application.stayName} 提交了民宿合作意向。`,
+    inner: `
+      <h1 style="margin:0 0 8px;font-size:26px;line-height:1.35;font-weight:500;color:${CHAMPAGNE};text-align:center;">民宿合作</h1>
+      <p style="margin:0 0 24px;font-size:13px;line-height:1.7;color:${SLATE};text-align:center;">
+        ${escapeHtml(formatShanghai(application.submittedAt))}
+      </p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+        ${dossierRow("民宿名称", escapeHtml(application.stayName))}
+        ${dossierRow("联系人", escapeHtml(application.contactName))}
+        ${dossierRow("邮箱", `<a href="mailto:${escapeHtml(application.email)}" style="color:${GOLD};text-decoration:none;">${escapeHtml(application.email)}</a>`)}
+        ${dossierRow("微信 / 手机", escapeHtml(application.contact))}
+        ${dossierRow("所在地", escapeHtml(application.city || "未填写"))}
+        ${dossierRow("合作说明", nl2br(application.intro))}
+      </table>
+    `,
+  });
+
+  const text = [
+    "AURA 计划 · 民宿合作意向",
+    `时间：${formatShanghai(application.submittedAt)}`,
+    "",
+    `民宿名称：${application.stayName}`,
+    `联系人：${application.contactName}`,
+    `邮箱：${application.email}`,
+    `微信/手机：${application.contact}`,
+    `所在地：${application.city || "未填写"}`,
+    "",
+    "合作说明：",
+    application.intro,
+    "",
+    "来源：https://412200.net/aura#partner",
+  ].join("\n");
+
+  return {
+    subject: `民宿合作｜${application.stayName}`,
     html,
     text,
   };

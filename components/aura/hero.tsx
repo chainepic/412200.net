@@ -1,24 +1,40 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { auraConfig } from "@/config/aura";
 
 export function AuraHero() {
   const phrases = auraConfig.hero.titles;
-  const photos = auraConfig.photos;
-  const [photoIndex, setPhotoIndex] = useState(0);
+  const slides = auraConfig.heroSlides;
+  const [slideIndex, setSlideIndex] = useState(0);
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [text, setText] = useState<string>(phrases[0]);
   const [deleting, setDeleting] = useState(false);
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
+
+  function goNext() {
+    setSlideIndex((current) => (current + 1) % slides.length);
+  }
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setPhotoIndex((current) => (current + 1) % photos.length);
-    }, 7000);
-    return () => window.clearInterval(timer);
-  }, [photos.length]);
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return;
+      if (index === slideIndex && slides[index]?.type === "video") {
+        void video.play().catch(() => undefined);
+      } else {
+        video.pause();
+      }
+    });
+  }, [slideIndex, slides]);
+
+  useEffect(() => {
+    const slide = slides[slideIndex];
+    const wait = slide.type === "video" ? 12000 : 8000;
+    const timer = window.setTimeout(goNext, wait);
+    return () => window.clearTimeout(timer);
+  }, [slideIndex, slides]);
 
   useEffect(() => {
     const current = phrases[phraseIndex];
@@ -49,19 +65,38 @@ export function AuraHero() {
 
   return (
     <header className="aura-hero">
-      {photos.map((photo, index) => (
+      {slides.map((slide, index) => (
         <div
-          key={photo.src}
+          key={slide.src}
           className="aura-hero-media"
-          style={{ opacity: index === photoIndex ? 1 : 0, transition: "opacity 1.2s ease" }}
+          style={{ opacity: index === slideIndex ? 1 : 0, transition: "opacity 1.2s ease" }}
         >
-          <Image
-            src={photo.src}
-            alt={index === photoIndex ? photo.alt : ""}
-            fill
-            priority={index === 0}
-            sizes="100vw"
-          />
+          {slide.type === "video" ? (
+            <video
+              ref={(node) => {
+                videoRefs.current[index] = node;
+              }}
+              src={slide.src}
+              muted
+              autoPlay={index === 0}
+              playsInline
+              loop
+              preload={index === 0 ? "auto" : "metadata"}
+              onCanPlay={(event) => {
+                if (index === slideIndex) {
+                  void event.currentTarget.play().catch(() => undefined);
+                }
+              }}
+            />
+          ) : (
+            <Image
+              src={slide.src}
+              alt={index === slideIndex ? slide.alt : ""}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+            />
+          )}
         </div>
       ))}
       <div className="aura-hero-overlay" />

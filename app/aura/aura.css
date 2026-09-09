@@ -143,7 +143,12 @@
   inset: 0;
 }
 
-.aura-hero-media img {
+.aura-hero-media img,
+.aura-hero-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -233,25 +238,217 @@
   font-weight: 600;
 }
 
-.aura-welcome {
+.aura-about {
   text-align: center;
-  padding: 100px 0;
+  padding: 100px 0 70px;
 }
 
-.aura-welcome h2 {
+.aura-about-question {
+  color: #00a8c5;
+  font-size: 18px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.aura-about h2 {
   color: #222;
-  font-size: 45px;
-  padding-bottom: 12px;
+  font-size: 40px;
+  padding-bottom: 16px;
+  line-height: 1.3;
+}
+
+.aura-about-full {
+  color: #222;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.aura-about-full-zh {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.aura-about-why {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  text-align: left;
+  margin-top: 48px;
+}
+
+.aura-about-why h3 {
+  color: #00a8c5;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.aura-about-why p {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+.aura-cases {
+  margin: 20px 0 90px;
+}
+
+.aura-cases h2 {
+  text-align: center;
+  color: #222;
+  font-size: 40px;
+}
+
+.aura-cases-lead {
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 500;
+  max-width: 720px;
+  margin: 12px auto 40px;
+}
+
+.aura-cases-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.aura-case-card {
+  display: block;
+  color: inherit;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+  transition: transform 0.3s ease;
+}
+
+.aura-case-card.is-featured {
+  grid-column: 1 / -1;
+}
+
+.aura-case-card.is-featured .aura-case-thumb {
+  aspect-ratio: 16 / 8;
+}
+
+.aura-case-card:hover {
+  transform: translateY(-4px);
+  padding-left: 0;
+}
+
+.aura-case-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #111;
+}
+
+.aura-case-thumb img {
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.5s ease;
+}
+
+.aura-case-card:hover img {
+  transform: scale(1.06);
+}
+
+.aura-case-info {
+  padding: 20px 22px 24px;
+}
+
+.aura-case-tag {
+  color: #00a8c5;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aura-case-info h3 {
+  color: #222;
+  font-size: 22px;
+  margin: 6px 0 8px;
+}
+
+.aura-case-info p {
+  color: #333;
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.aura-partner {
+  padding: 90px 0;
+  background: #f4f7f8;
+}
+
+.aura-partner-grid {
+  display: flex;
+  gap: 56px;
+  align-items: flex-start;
+}
+
+.aura-partner-grid > div:first-child {
+  flex: 1;
+}
+
+.aura-partner-grid form {
+  flex: 1;
+}
+
+.aura-partner h2 {
+  color: #222;
+  font-size: 40px;
   line-height: 1.25;
 }
 
-.aura-welcome p {
-  color: #444;
-  text-align: center;
+.aura-partner p {
+  color: #333;
   font-size: 16px;
   line-height: 1.8;
-  max-width: 720px;
-  margin: 0 auto;
+  font-weight: 500;
+  margin-top: 16px;
+  max-width: 460px;
+}
+
+.aura-form.is-light label span {
+  color: #222;
+}
+
+.aura-form.is-light input,
+.aura-form.is-light textarea {
+  background: #fff;
+  color: #222;
+  border: 1px solid #ccc;
+}
+
+.aura-form.is-light input::placeholder,
+.aura-form.is-light textarea::placeholder {
+  color: #777;
+}
+
+.aura-form.is-light button {
+  background: #00a8c5;
+  border-color: #00a8c5;
+}
+
+.aura-form.is-light button:hover:not(:disabled) {
+  background: #008fa8;
+  color: #fff;
+}
+
+.aura-form-success.is-light,
+.aura-form-error.is-light {
+  color: #222;
+}
+
+.aura-form-error.is-light {
+  color: #b42318;
 }
 
 .aura-slides-wrap {
@@ -337,14 +534,29 @@
 }
 
 .aura-book {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.58)),
-    var(--aura-book-image);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
   padding: 100px 0;
   color: #fff;
+}
+
+.aura-book-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aura-book-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.58);
+}
+
+.aura-book .aura-container {
+  position: relative;
+  z-index: 1;
 }
 
 .aura-book-grid {
@@ -460,79 +672,34 @@
 }
 
 .aura-days {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    var(--aura-days-image);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 100px 0;
-  color: #fff;
-  text-align: center;
+  padding: 90px 0;
+  background: #fff;
 }
 
 .aura-days h2 {
   font-size: 40px;
-  color: #fff;
-  margin-bottom: 28px;
+  color: #222;
+  text-align: center;
 }
 
-.aura-carousel {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
-}
-
-.aura-carousel::-webkit-scrollbar {
-  height: 6px;
-}
-
-.aura-carousel::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.45);
-  border-radius: 99px;
-}
-
-.aura-carousel-card {
-  position: relative;
-  flex: 0 0 min(500px, 80vw);
-  height: 280px;
-  overflow: hidden;
-  scroll-snap-align: start;
-}
-
-.aura-carousel-card img {
-  object-fit: cover;
-  filter: brightness(0.5);
-  transition: transform 0.5s ease, filter 0.5s ease;
-}
-
-.aura-carousel-card:hover img {
-  transform: scale(1.1);
-  filter: brightness(0.62);
-}
-
-.aura-carousel-info {
-  position: absolute;
-  bottom: 20px;
-  left: 25px;
-  z-index: 1;
-  text-align: left;
-  color: #fff;
-}
-
-.aura-carousel-info h3 {
-  font-size: 22px;
-  padding-bottom: 8px;
-  color: #fff;
-}
-
-.aura-carousel-info p {
-  color: #fff;
-  font-size: 14px;
+.aura-days-lead {
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
   font-weight: 500;
-  line-height: 1.55;
-  max-width: 90%;
+  max-width: 640px;
+  margin: 12px auto 0;
+}
+
+.aura-days-body {
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 500;
+  max-width: 640px;
+  margin: 16px auto 0;
 }
 
 .aura-blog {
@@ -707,7 +874,8 @@
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  margin: 50px 0;
+  padding: 50px 0;
+  margin: 0;
 }
 
 .aura-footer-logo {
@@ -734,18 +902,6 @@
 .aura-footer a:hover {
   padding-left: 5px;
   color: #00a8c5;
-}
-
-.aura-copyright {
-  background: #00a8c5;
-  color: #fff;
-  text-align: center;
-  padding: 20px 0;
-  font-weight: 500;
-}
-
-.aura-copyright a {
-  color: #fff;
 }
 
 @media screen and (max-width: 768px) {
@@ -801,12 +957,23 @@
     width: 100%;
   }
 
-  .aura-welcome {
-    padding: 48px 0;
+  .aura-about {
+    padding: 48px 0 36px;
   }
 
-  .aura-welcome h2 {
+  .aura-about h2,
+  .aura-cases h2 {
     font-size: 26px;
+  }
+
+  .aura-about-why,
+  .aura-cases-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .aura-cases {
+    margin: 10px 0 48px;
   }
 
   .aura-slides {
@@ -837,6 +1004,19 @@
     grid-template-columns: 1fr;
     gap: 24px;
     margin-top: 36px;
+  }
+
+  .aura-partner {
+    padding: 48px 0;
+  }
+
+  .aura-partner-grid {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .aura-partner h2 {
+    font-size: 26px;
   }
 
   .aura-book {
@@ -877,8 +1057,7 @@
   }
 
   .aura-days {
-    padding: 50px 0;
-    background-attachment: scroll;
+    padding: 48px 0;
   }
 
   .aura-days h2,
@@ -904,15 +1083,10 @@
   .aura-footer-grid {
     flex-direction: column;
     text-align: center;
-    margin: 32px 0;
+    padding: 32px 0;
   }
 
   .aura-footer a:hover {
     padding-left: 0;
-  }
-
-  .aura-copyright {
-    padding: 12px 0;
-    font-size: 14px;
   }
 }

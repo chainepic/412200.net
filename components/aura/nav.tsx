@@ -7,11 +7,12 @@ import { useEffect, useState } from "react";
 import { auraConfig } from "@/config/aura";
 
 const sectionLinks = [
-  { href: "#outcomes", label: "带走什么" },
+  { href: "#about", label: "是什么" },
+  { href: "#cases", label: "案例" },
   { href: "#stay", label: "住哪儿" },
+  { href: "#partner", label: "民宿合作" },
   { href: "#days", label: "七天" },
   { href: "#apply", label: "申请" },
-  { href: "#gallery", label: "现场" },
 ];
 
 export function AuraNav() {

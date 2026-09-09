@@ -17,7 +17,7 @@ export const auraConfig = {
     description:
       "第一期只收六个人。住在落地窗对着草地的房子里，七天做成一个别人点得开的产品，并带走照片和短片。",
   },
-  navCta: "申请第一期",
+  navCta: "申请Aura Plan",
   hero: {
     tagline: "AURA RESIDENCY · 第一期 · 七天六晚",
     title: "离开你平时的桌子一周。",
@@ -28,9 +28,14 @@ export const auraConfig = {
     ],
     subtitle:
       "你会做成一个别人点得开的产品，再带走一套照片和一支短片。住的地方对着草地，吃住都包，人不多。",
-    cta: "申请第一期",
+    cta: "申请Aura Plan",
     note: "早鸟价 ¥9,800，学员价 ¥16,800。早鸟只有前 3 个位子。",
   },
+  heroSlides: [
+    { type: "video", src: "/aura/video/travel-1.mp4" },
+    { type: "video", src: "/aura/video/travel-2.mp4" },
+    { type: "video", src: "/aura/video/travel-3.mp4" },
+  ],
   photos: [
     {
       src: "/aura/window-lawn.png",
@@ -57,9 +62,39 @@ export const auraConfig = {
       tag: "work",
     },
     {
+      src: "/aura/night-coding-desk.png",
+      alt: "夜里落地窗前的双屏工作台",
+      label: "夜编码",
+      tag: "work",
+    },
+    {
+      src: "/aura/night-coding-window.png",
+      alt: "夜晚落地窗，窗边电脑亮着",
+      label: "夜窗",
+      tag: "work",
+    },
+    {
+      src: "/aura/night-coding-city.png",
+      alt: "夜里对着玻璃窗写代码",
+      label: "夜工位",
+      tag: "work",
+    },
+    {
       src: "/aura/coffee.jpg",
       alt: "桌上的咖啡",
       label: "咖啡",
+      tag: "daily",
+    },
+    {
+      src: "/aura/pool-swim.png",
+      alt: "泳池游泳",
+      label: "游泳",
+      tag: "daily",
+    },
+    {
+      src: "/aura/hill-hike.png",
+      alt: "爬山路上",
+      label: "爬山",
       tag: "daily",
     },
     {
@@ -69,61 +104,32 @@ export const auraConfig = {
       tag: "space",
     },
   ],
-  deliverables: [
-    {
-      title: "一个别人点得开的产品",
-      body: "七天结束，你有一个网上能打开、带你名字的东西。",
-    },
-    {
-      title: "一套你自己能接着用的做法",
-      body: "哪些事交给模型，哪些自己拍板，你当场做完一遍。回去还能自己做。",
-    },
-    {
-      title: "照片和一支短片",
-      body: "这周会拍、会剪。走的时候带着能发的照片，和一支产品或人物短片。",
-    },
-    {
-      title: "一起做完的几个人",
-      body: "每期五到七个人。做完还在一个小群里。",
-    },
-  ],
-  days: [
-    {
-      day: "第一天",
-      title: "摊开你正在做的事",
-      body: "先看你每天在重复什么。当天下午交一批能用的东西。",
-    },
-    {
-      day: "第二天",
-      title: "留下你的口味和规矩",
-      body: "同一件事，做出来要像你。这些规矩以后不用从头说。",
-    },
-    {
-      day: "第三天",
-      title: "把一件完整的任务做完",
-      body: "你交代任务，按你的规矩做完。带走一条能反复用的做法。",
-    },
-    {
-      day: "第四天",
-      title: "做成能转发的链接",
-      body: "到这一天结束，别人点开就能用。",
-    },
-    {
-      day: "第五天",
-      title: "接上收款，让人看见",
-      body: "先跑通一条：有人能找到它，也能付钱。",
-    },
-    {
-      day: "第六天",
-      title: "上线，拍照，出片",
-      body: "产品发布。我们拍人和空间，剪一支短片，照片一并给你。",
-    },
-    {
-      day: "第七天",
-      title: "想清楚回去之后一个月",
-      body: "回去之后一个月做什么，当天说完。",
-    },
-  ],
+  deliverables: {
+    title: "带走什么",
+    items: [
+      {
+        title: "你原来那摊业务，能给人看了",
+        body: "网站、账号、店，看你带什么来。走的时候能打开，能转给别人。",
+      },
+      {
+        title: "回去自己还能接着做",
+        body: "这周怎么用 AI，是围着你的业务搭的。不是听完就忘的课。",
+      },
+      {
+        title: "照片和一支短片",
+        body: "人、空间、产品都会拍。走的时候能直接发。",
+      },
+      {
+        title: "一起做完的几个人",
+        body: "每期五到七个人。做完群还在。",
+      },
+    ],
+  },
+  days: {
+    title: "课是按人排的",
+    lead: "没有统一课表。你带着自己的业务来，我们按你的背景排这七天。",
+    body: "有人做账号，有人做店，有人手里已经有一摊事。目的就一件：用 AI 把你原来那摊业务做起来，不是另起一套跟你无关的作业。",
+  },
   experience: [
     {
       title: "大平层，窗子很大",
@@ -162,6 +168,71 @@ export const auraConfig = {
   },
   form: {
     submit: "提交申请",
+    intentLabel: "你想解决什么业务痛点？",
     success: "收到了。确认信已发到邮箱。我们会在一天内看材料，再微信约十五分钟。",
+  },
+  about: {
+    question: "What's AURA Plan?",
+    name: "AURA Residency / AURA 计划",
+    fullName: "AI-empowered Ultra-individual Residency & Acceleration",
+    fullNameZh: "AI 超级个体驻留与加速计划",
+    reasons: [
+      {
+        title: "Aura",
+        body: "Aura 本身意为「气场、光芒、光环」，极其符合女性追求独立、掌控力与审美光芒的心理投射。",
+      },
+      {
+        title: "Residency",
+        body: "驻留制是硅谷、艺术圈最高级的学习交流组织形式（如 OpenAI Residency、艺术驻留）。它代表一群高认知的人在独栋空间里共同生活与孵化，瞬间脱离培训班的俗气。",
+      },
+    ],
+  },
+  cases: {
+    title: "7 天之内，你能做出来的产品是：",
+    lead: "参与培训的学员，7 天内可以做出来的作品。带你的名字，别人点得开。",
+    items: [
+      {
+        name: "个人 IP 打造",
+        tag: "账号资产",
+        body: "定位、视觉、内容节奏，做成能被看见的个人账号。我们操盘账号累计播放 4785.7 万，粉丝 5.3 万，点赞 43 万，收藏 48.4 万。",
+        src: "/aura/personal-ip.png",
+        href: "#apply",
+        featured: true,
+      },
+      {
+        name: "釉下五彩瓷",
+        tag: "品牌官网",
+        body: "国家级非遗数字化品牌站 youxiawucaici.com。源起、造物、群星、典藏，一整套能打开的文化产品。",
+        src: "/brand/youxiawucaici/hero.png",
+        href: "https://youxiawucaici.com",
+      },
+      {
+        name: "Hi.Toys",
+        tag: "跨境独立站",
+        body: "潮玩出海店 hi.toys。BJD、盲盒、毛绒，全球结账，从陈列到付款是一条完整链路。",
+        src: "/brand/hitoys/hot.png",
+        href: "https://hi.toys",
+      },
+      {
+        name: "地方媒体账号孵化",
+        tag: "内容与增长",
+        body: "从选题、拍摄到发布节奏，做成能被本地看见的媒体账号。单条破 2.3 万，累计播放过 10 万。账号本身就是可验证的资产。",
+        src: "/brand/shipinhao/milestone.png",
+        href: "/#brand",
+      },
+      {
+        name: "GoodJob CRM",
+        tag: "AI 产品",
+        body: "外贸团队的 AI 业务系统。找客、跟进、邮件、单据串成一条。别人点得开，也能继续用。",
+        src: "/cases/goodjob-crm/workbench.png",
+        href: "/#cases",
+      },
+    ],
+  },
+  partner: {
+    title: "民宿申请合作",
+    lead: "欢迎优质民宿提交合作表单。我们会看材料，合适的话再联系你。",
+    submit: "提交合作意向",
+    success: "收到了。我们会尽快看材料，再联系你。",
   },
 } as const;

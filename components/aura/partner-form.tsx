@@ -6,7 +6,7 @@ import { auraConfig } from "@/config/aura";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function AuraApplicationForm() {
+export function AuraPartnerForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
@@ -19,16 +19,16 @@ export function AuraApplicationForm() {
     setMessage("");
 
     try {
-      const response = await fetch("/api/aura/apply", {
+      const response = await fetch("/api/aura/partner", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: data.get("name"),
+          stayName: data.get("stayName"),
+          contactName: data.get("contactName"),
           email: data.get("email"),
           contact: data.get("contact"),
-          social: data.get("social"),
-          background: data.get("background"),
-          intent: data.get("intent"),
+          city: data.get("city"),
+          intro: data.get("intro"),
           website: data.get("website"),
         }),
       });
@@ -42,7 +42,7 @@ export function AuraApplicationForm() {
       }
 
       setStatus("success");
-      setMessage(auraConfig.form.success);
+      setMessage(auraConfig.partner.success);
       form.reset();
     } catch {
       setStatus("error");
@@ -51,20 +51,19 @@ export function AuraApplicationForm() {
   }
 
   if (status === "success") {
-    return <p className="aura-form-success">{message}</p>;
+    return <p className="aura-form-success is-light">{message}</p>;
   }
 
   return (
-    <form onSubmit={onSubmit} className="aura-form">
+    <form onSubmit={onSubmit} className="aura-form is-light">
       <label>
-        <span>姓名 / 常用昵称 *</span>
-        <input
-          required
-          name="name"
-          maxLength={40}
-          autoComplete="name"
-          placeholder="你希望我们怎么称呼你"
-        />
+        <span>民宿名称 *</span>
+        <input required name="stayName" maxLength={80} placeholder="店名" />
+      </label>
+
+      <label>
+        <span>联系人 *</span>
+        <input required name="contactName" maxLength={40} autoComplete="name" />
       </label>
 
       <label>
@@ -75,34 +74,23 @@ export function AuraApplicationForm() {
           name="email"
           maxLength={120}
           autoComplete="email"
-          placeholder="用来收确认信"
+          placeholder="方便我们回信"
         />
       </label>
 
       <label>
         <span>微信号 / 手机号 *</span>
-        <input
-          required
-          name="contact"
-          maxLength={80}
-          autoComplete="tel"
-          placeholder="方便我们约时间"
-        />
+        <input required name="contact" maxLength={80} autoComplete="tel" />
       </label>
 
       <label>
-        <span>小红书 / 微博 / 即刻，有就填</span>
-        <input name="social" maxLength={300} />
+        <span>所在城市 / 地址</span>
+        <input name="city" maxLength={80} />
       </label>
 
       <label>
-        <span>你现在做什么 *</span>
-        <textarea required name="background" maxLength={500} rows={3} />
-      </label>
-
-      <label>
-        <span>{auraConfig.form.intentLabel} *</span>
-        <textarea required name="intent" maxLength={1200} rows={5} />
+        <span>民宿简介与合作意向 *</span>
+        <textarea required name="intro" maxLength={1200} rows={5} />
       </label>
 
       <input
@@ -115,11 +103,11 @@ export function AuraApplicationForm() {
       />
 
       {status === "error" && message ? (
-        <p className="aura-form-error">{message}</p>
+        <p className="aura-form-error is-light">{message}</p>
       ) : null}
 
       <button type="submit" disabled={status === "submitting"}>
-        {status === "submitting" ? "提交中" : auraConfig.form.submit}
+        {status === "submitting" ? "提交中" : auraConfig.partner.submit}
       </button>
     </form>
   );
