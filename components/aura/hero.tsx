@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import { auraConfig } from "@/config/aura";
@@ -21,20 +20,18 @@ export function AuraHero() {
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
       if (!video) return;
-      if (index === slideIndex && slides[index]?.type === "video") {
+      if (index === slideIndex) {
         void video.play().catch(() => undefined);
       } else {
         video.pause();
       }
     });
-  }, [slideIndex, slides]);
+  }, [slideIndex]);
 
   useEffect(() => {
-    const slide = slides[slideIndex];
-    const wait = slide.type === "video" ? 12000 : 8000;
-    const timer = window.setTimeout(goNext, wait);
+    const timer = window.setTimeout(goNext, 12000);
     return () => window.clearTimeout(timer);
-  }, [slideIndex, slides]);
+  }, [slideIndex]);
 
   useEffect(() => {
     const current = phrases[phraseIndex];
@@ -71,32 +68,22 @@ export function AuraHero() {
           className="aura-hero-media"
           style={{ opacity: index === slideIndex ? 1 : 0, transition: "opacity 1.2s ease" }}
         >
-          {slide.type === "video" ? (
-            <video
-              ref={(node) => {
-                videoRefs.current[index] = node;
-              }}
-              src={slide.src}
-              muted
-              autoPlay={index === 0}
-              playsInline
-              loop
-              preload={index === 0 ? "auto" : "metadata"}
-              onCanPlay={(event) => {
-                if (index === slideIndex) {
-                  void event.currentTarget.play().catch(() => undefined);
-                }
-              }}
-            />
-          ) : (
-            <Image
-              src={slide.src}
-              alt={index === slideIndex ? slide.alt : ""}
-              fill
-              priority={index === 0}
-              sizes="100vw"
-            />
-          )}
+          <video
+            ref={(node) => {
+              videoRefs.current[index] = node;
+            }}
+            src={slide.src}
+            muted
+            autoPlay={index === 0}
+            playsInline
+            loop
+            preload={index === 0 ? "auto" : "metadata"}
+            onCanPlay={(event) => {
+              if (index === slideIndex) {
+                void event.currentTarget.play().catch(() => undefined);
+              }
+            }}
+          />
         </div>
       ))}
       <div className="aura-hero-overlay" />
